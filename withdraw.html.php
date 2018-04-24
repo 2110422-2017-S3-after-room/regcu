@@ -7,6 +7,8 @@
     <meta http-equiv="content-type"  
         content="text/html; charset=utf-8"/> 
     <link rel="stylesheet" href="tablestyle.css">
+    <link rel="stylesheet" href="backbutton.css">
+    <link rel="stylesheet" href="sidebar.css">
   </head>  
   <body>  
     <br> <br>

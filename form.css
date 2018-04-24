@@ -3,7 +3,7 @@
 
 .form{
 	margin: 0 auto;
-	width:600px; 
+	min-width:600px; 
 	border: solid 1px #3d4b4c;
 	background-color: #bed1d3;
 	font-size : 20px;
@@ -15,7 +15,7 @@
 	color:#FFFFFF; 
 	padding:3px;"
 	font-size: 30px;
-	width: 500px;
+	min-width: 600px;
 }
 .submitbutton{
 	width : 100px;

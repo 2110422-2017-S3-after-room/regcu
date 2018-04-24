@@ -10,48 +10,12 @@
         content="text/html; charset=utf-8"/> 
     
     <link rel="stylesheet" href="backbutton.css">
-    <link rel="stylesheet" href="tablestyle.css">
+    <link rel="stylesheet" href="tablee.css">
     <link rel="stylesheet" href="sidebar.css">
     <style>
     
 
-    .splitleft {
-      height: 100vh;
-      width: 200px;
-      z-index: 1;
-      top: 0;
-      overflow-x: hidden;
-      padding-top: 20px;
-      float: left;
-      background-color: #f9eaec;
-      min-height: 100%;
-      text-align: center;
-    }
-
-
-
-    .splitright {
-      height: 100%;
-      width: 60%;
-      display: inline-block;
-      z-index: 1;
-      top: 0;
-      overflow-x: visible;
-      /*text-align: center;*/
-      padding: 20px;
-      padding-top: 0px;
-    }
-
-    h1,h2{
-      font-family: 'Karla';
-      font-size : 30px;
-    }
-    h2{
-      font-size: 20px;
-    }
-    #regcu{
-      color: white;
-    }
+    
   </style>
   </head>  
   <body >  
@@ -68,7 +32,7 @@ max-height:100%; padding-bottom:20px;" />
   
   <button class="accordion"> Personal Information </button>
   <div class = "panel">
-    <button class="inacc" onclick="location.href='studentInfo.html.php'">Payment Info </button>
+    <button class="inacc" onclick="location.href='showInfo.php'">Payment Info </button>
     <button class="inacc" onclick="location.href='showTranscript.php'">Transcript </button>
     
   </div>

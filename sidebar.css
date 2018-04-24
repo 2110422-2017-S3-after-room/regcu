@@ -55,3 +55,41 @@
       
 
     }
+
+    .splitleft {
+      height: 100vh;
+      width: 200px;
+      z-index: 1;
+      top: 0;
+      overflow-x: hidden;
+      padding-top: 20px;
+      float: left;
+      background-color: #f9eaec;
+      min-height: 100%;
+      text-align: center;
+    }
+
+
+
+    .splitright {
+      height: 100%;
+      width: 60%;
+      display: inline-block;
+      z-index: 1;
+      top: 0;
+      overflow-x: visible;
+      /*text-align: center;*/
+      padding: 20px;
+      padding-top: 0px;
+    }
+
+    h1,h2{
+      font-family: 'Karla';
+      font-size : 30px;
+    }
+    h2{
+      font-size: 20px;
+    }
+    #regcu{
+      color: white;
+    }
