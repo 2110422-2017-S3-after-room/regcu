@@ -3,17 +3,18 @@
 
 .form{
 	margin: 0 auto;
-	min-width:600px; 
+	min-width:500px; 
 	border: solid 1px #3d4b4c;
 	background-color: #bed1d3;
 	font-size : 20px;
 	font-family: 'Pridi',serif;
 	position: relative;
+	padding-left: 20px;
 }
 .formtitle{
 	background-color:#3d4b4c;
 	color:#FFFFFF; 
-	padding:3px;"
+	padding:3px;
 	font-size: 30px;
 	min-width: 600px;
 }

@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Delete Course</title>
+  <link rel="stylesheet" href="tablestyle.css">
+</head>
+<body>
 <?php
 
 /**
@@ -6,14 +13,13 @@
 
 /* Escape HTML for output*/
 function escape($html){
-  return htmlspectialchars($html, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
+  return htmlspecialchars($html, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
 }
-require "config.php";
+require "session.php";
 
 if (isset($_GET["cid"])) {
   try {
-    $connection = new PDO($dsn, $username, $password, $options);
-  
+    
     $cid = $_GET["cid"];
 
     $sql = "DELETE FROM course WHERE cid = :cid";
@@ -27,7 +33,7 @@ if (isset($_GET["cid"])) {
 }
 
 try {
-  $connection = new PDO($dsn, $username, $password, $options);
+  // $connection = new PDO($dsn, $username, $password, $options);
 
   $sql = "SELECT * FROM course";
 
@@ -43,15 +49,16 @@ try {
  -->        
 <h2>Delete Courses</h2>
 
-<table>
-  <thead>
+<table class="data-table">
+  <thead >
     <tr>
       <th>Course ID</th>
       <th>Course Name</th>
       <th>Credits</th>
+      <th/>
     </tr>
   </thead>
-  <tbody>
+  <tbody style="display:block; overflow-y: scroll; height:500px;">
   <?php foreach ($result as $row) : ?>
     <tr>
       <td><?php echo escape($row["cid"]); ?></td>
@@ -60,9 +67,10 @@ try {
       <td><a href="delete-course.php?cid=<?php echo escape($row["cid"]); ?>">Delete</a></td>
     </tr>
   <?php endforeach; ?>
+  
   </tbody>
 </table>
-
-<a href="managecourse.php">Back to manage course</a>
-
 <?php require "templates/footer.php"; ?>
+<a href="managecourse.php">Back to manage course</a>
+</body>
+</html>

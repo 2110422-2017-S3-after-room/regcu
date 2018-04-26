@@ -1,11 +1,19 @@
-
+<?php
+  
+   include "session.php";
+   include "checkstudent.php";
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>apply for scholarship</title>
   <link rel="stylesheet" href="ApplySch.css">
+    <link rel="stylesheet" href="backbutton.css">
+      <link rel="stylesheet" href="sidebar.css">
 </head>
 <body>
+  <?php include 'splitleft.html'; ?>
+  <div class="splitright">
   <button class="back" onclick="location.href='studenthome.php'">◄</button>
    <h1> Check qualification for scholarships </h1>
    <h2> Select the scholarship type you want to check qualification for, then click submit button. </h2><br><br>
@@ -15,12 +23,11 @@
       <!-- <input type="radio" name="scholarship type" value="C"> ทุนการศึกษาจากหน่วยงานภายนอก<br> -->
       <input class="button" type = "submit" name = "submit"> <br>
    </form>
-
+</div>
 </body></html>
 
 
 <?php
-   include "session.php";
    $dbname = 'regcu';
    if(!mysqli_select_db($db, $dbname)){
    $output = "Unable to locate " . $dbname . "database :(" ;

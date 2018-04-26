@@ -16,40 +16,11 @@
 		 <link rel = "stylesheet" href= "sidebar.css">
 		 <link rel = "stylesheet" href = "tablee.css">
 	</head>
-	<body bgcolor = "#FFFFFF">
-		<div class="splitleft" >
-			  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Phra_Kiao.svg/1200px-Phra_Kiao.svg.png"  style="max-width:50%;
-			max-height:100%; padding-bottom:20px;" />
-			  <p id="regcu">REG CU</p>
-			  <div class = "asdf">
-			  
-			  <button class="accordion"> Personal Information </button>
-			  <div class = "panel">
-			    <button class="inacc" onclick="location.href='showInfo.php'">Payment Info </button>
-			    <button class="inacc" onclick="location.href='showTranscript.php'">Transcript </button>
-			    
-			  </div>
-			  <div class = "panel">
-			    <button class="inacc" onclick="location.href='logout.php'">Logout </button>
-			  </div>
+	<body style="background-image: url('https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');">
 
-			  <button class="accordion"> Course </button>
-			  <div class = "panel">
-			    
-			    <button class="inacc" onclick="location.href='EnrollCourse.php'">Enroll </button>
-			    <button class="inacc" onclick="location.href='Withdraw.php'"> Withdraw </button>
-			    <button class="inacc" onclick="location.href='SearchCourses.php'"> Search Courses </button>
-			    <button class="inacc" onclick="location.href='showEnrolledCourse.php'"> Show Enrolled Course </button>
-
-
-			  </div>
-			  <button class="accordion"> Scholarships </button>
-			  <div class = "panel">
-			    <button class="inacc" onclick="location.href='ViewSch.php'"> View Scholarships </button>
-			    <button class="inacc" onclick="location.href='ApplySch.php'"> Check Scholarship Qualification </button>
-			  </div>
-			</div></div>
-		<div class = "splitright">
+		<?php include 'splitleft.html'; ?>
+		
+		<div class = "splitright" style="background-image: none;">
 		<button class="back" onclick="location.href='studenthome.php'">◄</button>
 		<div style="padding-left: 20px;">
 		
@@ -60,9 +31,9 @@
          <div class="form"  align = "left">
             <div class="formtitle"><b>select semester and year</b></div>
 				
-            <div style = "margin:30px; width: 500px;">
+            <div style = "margin:30px; width: 300px;">
                
-               <form action = "" method = "post" style="width: 500px;">
+               <form action = "" method = "post" style="width: 400px;">
                   <label>YEAR  :</label>
                   <input type = "number" value="2017" min="2000" max="2018" name = "year" class = "box" /><br><br>
                
@@ -82,26 +53,6 @@
 			
       </div>
       
-      <script>
-var acc = document.getElementsByClassName("accordion");
-    var i;
-    for (i = 0 ; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-        /* Toggle between adding and removing the "active" class,
-        to highlight the button that controls the panel */
-        this.classList.toggle("active");
-
-        /* Toggle between hiding and showing the active panel */
-        var panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-            panel.style.display = "none";
-        } else {
-            panel.style.display = "block";
-        }
-        });
-    }
-
-</script>
    
 
 <?php

@@ -1,8 +1,7 @@
 <?php
-
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "2399311";
 
 # connect to MySQL server
 $link = mysqli_connect($servername, $username, $password);
@@ -20,7 +19,7 @@ if (!mysqli_set_charset($link, 'utf8')){
 }
 
 # select database
-$dbname = 'regcu';
+$dbname = 'regculogin';
 if(!mysqli_select_db($link, $dbname)){
 	$output = "Unable to locate " . $dbname . "database :(" ;
 	include 'output.html.php';

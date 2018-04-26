@@ -5,12 +5,19 @@
     <title>Enrolled Course Info</title>  
     <meta http-equiv="content-type"  
         content="text/html; charset=utf-8"/> 
-    <link rel="stylesheet" href="tablestyle.css">
+    <link rel="stylesheet" href="tablee.css">
     <link rel="stylesheet" href="backbutton.css">
+  	<link rel="stylesheet" href="gobacklink.css">
+    <link rel="stylesheet" href="sidebar.css">
   </head>  
-  <body>
-  	<button class="back" onclick="location.href='studenthome.php'">◄</button>  
-    
+  <body style="background-image:url('https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');">
+  	<?php include 'splitleft.html'; ?>
+
+
+
+<div class="splitright" style="background-image: none">
+  	<button class="back" onclick="location.href='studenthome.php'" style="display: inline-block;" ;>◄</button>  
+    <a class="gobacklink" href='showTranscripts.php'" target="_blank" style="">Print Transcript</a>
     
     
     
@@ -43,7 +50,7 @@
 			include 'error.html.php';
 			exit();
 		}
-		echo '<table class="data-table">'; 
+		echo '<table class="data-table"  style="min-width=700px;">'; 
 		echo '<caption class="title">  <h1>Year  : ' . $row['yearr'] . '&#9; &emsp;Sem : '.$row['sem'].' </h1>  </caption>';
 		echo'  
 			<thead>
@@ -71,7 +78,7 @@
   		$query3 = "SELECT sum(E.grade*C.credits)/sum(C.credits) as gpa FROM enroll E, course C WHERE E.cid = C.cid and E.sid = " .$user_check . " AND  E.yearr =  " .$row['yearr']. " AND E.sem = ".$row['sem'].";" ;
   		$result3 =  mysqli_query($db,$query3);
   		$row3 = mysqli_fetch_array($result3 );
-		echo '<tr class = "gparow">
+		echo '<tr class = "gparow" style="background-color:#a6acad">
 				<td> </td>
 				<td> </td> 
 				<td> </td>
@@ -90,6 +97,6 @@
       <tr/>
     </tfoot> 
   </table>
-  
+  </div>
   </body>  
 </html>

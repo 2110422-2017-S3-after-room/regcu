@@ -1,8 +1,15 @@
+<?php 
+    include "session.php";
+   include "checkstudent.php";
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
       <link rel="stylesheet" href="form.css">
       <link rel="stylesheet" href= "backbutton.css">
+
+      <link rel="stylesheet" href= "sidebar.css">
       <script type="text/javascript">
          function addRow(){
             var table = document.getElementById("myTable");
@@ -17,7 +24,8 @@
       </script>
       <title>Enroll Course </title>
    </head>
-	<body bgcolor = "#FFFFFF" >
+   <?php include 'splitleft.html'; ?>
+   <body bgcolor = "#FFFFFF" >
       <button class="back" onclick="location.href='studenthome.php'">◄</button>
       <h1>Enroll Course</h1>
 	   <div align = "center">
@@ -33,34 +41,14 @@
                   <input type = "number" name = "sectionID" class = "box" /><br/><br />
                   <input type = "submit"  value = " Submit "/><br />
                </form>
-              <!--  <form>
-               <div class="panel panel-default">
-               <table id = "myTable" class="table">
-                  <tr>
-                     <th>courseID</th> 
-                     <th>section</th>
-                  </tr>
-                  <tr class = "unit-table">
-                     <td><input type = "text" name = "courseID" class = "box" /> </td>
-                     <td><input type = "text" name = "sectionID" class = "box" ></td>
-                  </tr>
-               </table>
-					
-            </div>
-				<button type = "button" id="add_btn" onclick="addRow()">Add new row</button>
-          <input type="submit" name="submit" value="Submit">
-         </form> -->
+              
          </div></div></div>
    </body>
 
 </html>
 
 <?php
-   include "session.php";
-   $role = $_SESSION['user_role'];
-   if(!isset($_SESSION['user_role']) | $_SESSION['user_role'] != 'student' ){
-      header("Location: login.php");
-   }
+  
 
    
    $SEM = "2";
@@ -72,14 +60,16 @@
       $query = "SELECT count(*) as count FROM section S  WHERE S.cid = " .$CID . ' and S.sec_id = '.$SEC . ' and S.yearr = '. $YEAR. " AND S.sem =  " . $SEM .";"; 
    $validCourse = mysqli_query($db, $query);
    if(!$validCourse){
-      $error = "Error fetching course";
-      include 'error.html.php';
+      echo '<script language="javascript">';
+            echo 'alert("ERROR: cannot fetch course")';
+            echo '</script>';
       exit();
    }
    $row = mysqli_fetch_array($validCourse);
    if($row['count'] != 1){ //ไม่มีวิชา-เซคนี้
-      $error = "No matching course/section";
-      include 'error.html.php';
+      echo '<script language="javascript">';
+            echo 'alert("ERROR: No matching course/section")';
+            echo '</script>';
       exit();
    } 
 
@@ -87,8 +77,9 @@
 $query3 = 'SELECT count(*) as count, sec_id FROM enroll  WHERE sid ="'.$user_check.'" and cid = "'.$CID. '" and yearr = '.$YEAR .' and sem = '.$SEM.';';
 $enrolledThisCourse = mysqli_query($db, $query3);
 if(!$enrolledThisCourse){
-   $error = "error fetching enroll";
-   include "error.html.php";
+  echo '<script language="javascript">';
+            echo 'alert("ERROR: Cannot fetch enroll")';
+            echo '</script>';
    exit();
 }else{ 
    $row3 = mysqli_fetch_array($enrolledThisCourse);
@@ -100,15 +91,17 @@ if(!$enrolledThisCourse){
                   GROUP BY E.sid ;';
       $checkCredit = mysqli_query($db, $query2);
       if(!$checkCredit){
-         $error = "error fetch total credits";
-         include "error.html.php";
+         echo '<script language="javascript">';
+            echo 'alert("ERROR : cannot fetch credit")';
+            echo '</script>';
          exit();
       }else{
          $row2 = mysqli_fetch_array($checkCredit);
          $totalCredit = $row2["totalCredit"];
          if($totalCredit > 19){
-               $error = "too many credits";
-               include 'error.html.php';
+               echo '<script language="javascript">';
+            echo 'alert("Sorry, you do not have enough credits")';
+            echo '</script>';
                exit();
          }
       }
@@ -116,30 +109,35 @@ if(!$enrolledThisCourse){
       $query4 = 'INSERT INTO enroll SET sid ="'.$user_check.'", cid = "'.$CID. '" , sec_id = "' .$SEC. '", yearr = ' . $YEAR . ' ,sem = '.$SEM.';';
       $insertR = mysqli_query($db,$query4);
       if(!$insertR){
-         $error = "error inserting enroll.";
-         include 'error.html.php';
+         echo '<script language="javascript">';
+            echo 'alert("Error : Fail to insert into enroll")';
+            echo '</script>';
          exit();
       }else{
-         $error = "course enrolled!";
-         include "error.html.php";
+         echo '<script language="javascript">';
+            echo 'alert("SUCCESS! Course Enrolled.")';
+            echo '</script>';
          exit();
       }
    }else{ // enrolled in this semester -> check sec_id
       if($row3['sec_id'] == $SEC){
-         $error = "already enrolled D:";
-         include 'error.html.php';
+         echo '<script language="javascript">';
+            echo 'alert("ERROR: You cannot enroll on a course you are already taking.")';
+            echo '</script>';
          exit();
       }else{
          $query5 = 'UPDATE enroll SET sec_id ='.$SEC.' WHERE sid = ' .$user_check.' and cid = '.$CID.' and yearr ='.$YEAR. ' and sem = ' .$SEM.';' ;
          $updateS = mysqli_query($db,$query5);
 
          if(!$updateS){
-            $error = "error updating enroll.";
-            include 'error.html.php';
+            echo '<script language="javascript">';
+            echo 'alert("ERROR cannot update enroll!")';
+            echo '</script>';
             exit();
          }else{
-             $error = "section changed!";
-             include 'error.html.php';
+            echo '<script language="javascript">';
+            echo 'alert("section changed!")';
+            echo '</script>';
              exit();          
          }     
       }

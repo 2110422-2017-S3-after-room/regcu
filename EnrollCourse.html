@@ -37,7 +37,7 @@
 	
 <?php
    include "session.php";
-   $dbname = 'regcu';
+   $dbname = 'regculogin';
    if(!mysqli_select_db($db, $dbname)){
    $output = "Unable to locate " . $dbname . "database :(" ;
    include 'output.html.php';

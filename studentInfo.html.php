@@ -1,4 +1,4 @@
-
+<?php require "templates/header.php"; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">  
@@ -11,55 +11,19 @@
     
     <link rel="stylesheet" href="backbutton.css">
     <link rel="stylesheet" href="tablee.css">
-    <link rel="stylesheet" href="sidebar.css">
-    <style>
-    
 
-    
-  </style>
+    <link rel="stylesheet" href="sidebar.css">
   </head>  
-  <body >  
+  <body style="background-image:url(https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); background-repeat: no-repeat;" >  
    <!-- w3-include-html="sideb.html" -->
 
 
 
-
-<div class="splitleft" >
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Phra_Kiao.svg/1200px-Phra_Kiao.svg.png"  style="max-width:50%;
-max-height:100%; padding-bottom:20px;" />
-  <p id="regcu">REG CU</p>
-  <div class = "asdf">
-  
-  <button class="accordion"> Personal Information </button>
-  <div class = "panel">
-    <button class="inacc" onclick="location.href='showInfo.php'">Payment Info </button>
-    <button class="inacc" onclick="location.href='showTranscript.php'">Transcript </button>
-    
-  </div>
-  <div class = "panel">
-    <button class="inacc" onclick="location.href='logout.php'">Logout </button>
-  </div>
-
-  <button class="accordion"> Course </button>
-  <div class = "panel">
-    
-    <button class="inacc" onclick="location.href='EnrollCourse.php'">Enroll </button>
-    <button class="inacc" onclick="location.href='Withdraw.php'"> Withdraw </button>
-    <button class="inacc" onclick="location.href='SearchCourses.php'"> Search Courses </button>
-    <button class="inacc" onclick="location.href='showEnrolledCourse.php'"> Show Enrolled Course </button>
-
-
-  </div>
-  <button class="accordion"> Scholarships </button>
-  <div class = "panel">
-    <button class="inacc" onclick="location.href='ViewSch.php'"> View Scholarships </button>
-    <button class="inacc" onclick="location.href='ApplySch.php'"> Check Scholarship Qualification </button>
-  </div>
-</div></div>
+   <?php include "splitleft.html"; ?>
 
 
 
-<div class="splitright">
+<div class="splitright" style="background-image:none;">
  <button class="back" onclick="location.href='studenthome.php'">◄</button>
 
      <h1>Payment Info</h1>  
@@ -82,6 +46,7 @@ max-height:100%; padding-bottom:20px;" />
         <th>TRANSACTION DATE</th>
       </tr>
     </thead>
+
     <tbody>
     <?php
       $no   = 1;
@@ -96,32 +61,13 @@ max-height:100%; padding-bottom:20px;" />
       $no++;
     }?>
     </tbody>
+    
     <tfoot>
       <tr/>
     </tfoot> 
   </table>
 </div>
 
-<script>
-var acc = document.getElementsByClassName("accordion");
-    var i;
-    for (i = 0 ; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-        /* Toggle between adding and removing the "active" class,
-        to highlight the button that controls the panel */
-        this.classList.toggle("active");
-
-        /* Toggle between hiding and showing the active panel */
-        var panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-            panel.style.display = "none";
-        } else {
-            panel.style.display = "block";
-        }
-        });
-    }
-includeHTML();
-</script>
   </body>  
 </html>
 

@@ -6,11 +6,14 @@
     <title>Withdraw Course</title>  
     <meta http-equiv="content-type"  
         content="text/html; charset=utf-8"/> 
-    <link rel="stylesheet" href="tablestyle.css">
+    <link rel="stylesheet" href="tablee.css">
     <link rel="stylesheet" href="backbutton.css">
     <link rel="stylesheet" href="sidebar.css">
   </head>  
   <body>  
+    <?php include 'splitleft.html'; ?>
+    <div class="splitright">
+     <button class="back" onclick="location.href='studenthome.php'">◄</button>
     <br> <br>
     <table class="data-table">
     <caption class="title">  <h1>Withdraw Course</h1>  </caption>
@@ -50,7 +53,7 @@
     </tfoot> 
   </table>
   <br><br>
- 
+ </div>
   </body>  
 </html>
 

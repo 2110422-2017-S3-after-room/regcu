@@ -9,18 +9,15 @@
    
    <head>
       <title>Main Menu </title>
-      <p style="font-size: 20px; color: white"><?php echo $login_user ?></p>
-
     	<link rel = "stylesheet" href = "studenthome.css">
  
 </head>
    
 <body>
-      <header>
-         
+         <header><h2 id="sighout" style="text-align:left;"><?php echo $login_user ?> (<?php echo $user_role ?>)</h2>
          <h2><a id="sighout" href = "logout.php">Sign Out <img src="https://home.realart.com/assets/img/icon_logout.png" width="20px"> </a></h2></header>
 
-      <h1> Main Menu </h1>
+      <h1> Welcome </h1>
 
 <!-- ดูผลการจ่ายค่าเทอม -->
       <button class="button pink" name = "showPaymentInfo" onclick="location.href='showInfo.php'" > Payment info <div class="button__horizontal"></div><div class="button__vertical"></div></button>

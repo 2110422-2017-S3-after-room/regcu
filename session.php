@@ -10,4 +10,7 @@
    
     $login_user = $row['username'];
     $user_role = $_SESSION['user_role'];
+
+     $connection = new PDO($dsn, $username, $password, $options);
+    $connection->query("use regcu");
 ?>

@@ -88,10 +88,12 @@
 
 .white {
    color: white;
+
 }
 
 .pink {
    color: pink;
+
 }
 
 
@@ -127,7 +129,6 @@ h1 {
   top: 5px;
   left: 5px;
   font-family: 'Cabin Sketch', cursive; 
-  font-size: 25px; 
-  color: white;
+  color: #C0C0C0;
  }
  

@@ -1,15 +1,14 @@
 <?php
+	include('session.php'); 
+   	include('checkstudent.php');
+
 	/* Escape HTML for output*/
 	function escape($html){
 	  return htmlspecialchars($html, ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
 	}
 	
 
-	include('session.php'); 
-   	$role = $_SESSION['user_role'];
-   	if(!isset($_SESSION['user_role']) | $_SESSION['user_role'] != 'student' ){
-      	header("Location: login.php");
-   	}
+	
    	$SEM = '2';
 	$YEAR = '2017';
 	
@@ -22,8 +21,9 @@
 	    $query = "UPDATE Enroll SET grade=-1 WHERE sid=".$user_check." AND cid = " .$cid. " AND yearr = ".$YEAR." AND sem = ".$SEM." ;";
 	    $result = mysqli_query($db, $query);
 	    if(!$result){
-	    	$error = "Error updating grade to -1" ;
-	    	include 'error.html.php';
+	    	echo '<script language="javascript">';
+            echo 'alert("ERROR: Cannot update grade to W")';
+            echo '</script>';
 	    	exit();
 	    }
 	  } catch(PDOException $error) {
@@ -35,9 +35,10 @@
 	//echo $query;
 	$result = mysqli_query($db, $query);
 	if(!$result){
-		$error = "Error fetching";
-		include 'error.html.php';
-		exit();
+	    	echo '<script language="javascript">';
+            echo 'alert("ERROR: Cannot fetch database")';
+            echo '</script>';
+            exit();
 	}
 	include "withdraw.html.php" ;
 ?>
