@@ -57,7 +57,7 @@ table td {
 .data-table tbody td:first-child,
 .data-table tbody td:nth-child(4),
 .data-table tbody td:last-child {
-	text-align: left;
+	text-align: center;
 }
 .data-table tbody tr:nth-child(odd) td {
 	background-color: #f4fbff;

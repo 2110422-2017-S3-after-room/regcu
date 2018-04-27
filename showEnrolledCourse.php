@@ -6,7 +6,7 @@
    	}
 ?>
 
-<html>
+<!-- <html>
 	
 	<head>
 		<title>ดูรายวิชาที่ลงทะเบียนเรียน</title>
@@ -16,12 +16,14 @@
 		 <link rel = "stylesheet" href= "sidebar.css">
 		 <link rel = "stylesheet" href = "tablee.css">
 	</head>
-	<body style="background-image: url('https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');">
+	<body style="background-image: url('https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');"> -->
 
-		<?php include 'splitleft.html'; ?>
+		<?php 
+		include 'templates\header.php';
+		include 'splitleft.html'; ?>
 		
 		<div class = "splitright" style="background-image: none;">
-		<button class="back" onclick="location.href='studenthome.php'">◄</button>
+		<?php include "backbuttonstudent.html"; ?>
 		<div style="padding-left: 20px;">
 		
 		<h1 style = "font-size: 30px"> Show Enrolled Course </h1>

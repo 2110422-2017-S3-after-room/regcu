@@ -23,11 +23,13 @@ try {
 }
 ?>
 <?php require "templates/header.php"; ?>
+<span style="overflow-x:scroll;">
 <?php include 'splitleft-teacher.html'; ?>
   <div class=splitright>
-<h2>Update Grade</h2>
+<?php include 'backbutton.html'; ?> 
+<h1>Update Grade</h1>
 
-<table class="data-table" style="display: block; overflow: scroll;height: 300px;">
+<table class="data-table" style="display: block; overflow-y: auto; width:700px; overflow-x:hidden; height: 300px;">
     <thead>
         <tr>
             <th>Course's ID</th>
@@ -35,6 +37,7 @@ try {
             <th>Section</th>
             <th>Year</th>
             <th>Semester</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -50,7 +53,7 @@ try {
     <?php endforeach; ?>
     </tbody>
 </table>
-
-<a href="teacherhome.php">Back to home</a>
-</div>
+<br>
+<a class="gobacklink" href="teacherhome.php">Back to home</a>
+</div></span>
 <?php require "templates/footer.php"; ?>

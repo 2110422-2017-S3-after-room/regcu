@@ -10,6 +10,7 @@
 	font-family: 'Pridi',serif;
 	position: relative;
 	padding-left: 20px;
+
 }
 .formtitle{
 	background-color:#3d4b4c;
@@ -25,4 +26,26 @@
 	color: white;
 	border-width: 0px;
 	border-radius: 5px;
+}
+
+
+.formtextbox{
+	font-family: 'Pridi', serif;
+	font-size: 16px;
+}
+.formtextboxsmall{
+	font-family: 'Pridi', serif;
+	font-size: 12px;
+	width: 60px;
+	text-align: center;
+	background-color: white;
+	border-width: 1px;
+	border-color:black;
+}
+.formtextboxsmall:focus{
+	background-color: #ffeb75;
+}
+
+.submitbutton:hover, .submitbutton:active {
+    background-color: #7bbfc4;
 }

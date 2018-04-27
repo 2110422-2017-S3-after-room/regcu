@@ -4,7 +4,7 @@
 
    	// $query = 'select * from '
 ?>
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
@@ -12,10 +12,12 @@
     <link rel="stylesheet" href="backbutton.css">
     <link rel="stylesheet" href="sidebar.css">
 </head>
-<body>
-	<?php include 'splitleft.html'; ?>
+<body> -->
+	<?php 
+		include 'templates\header.php';
+		include 'splitleft.html'; ?>
 	<div class="splitright">
-		<button class="back" onclick="location.href='studenthome.php'">◄</button>
+		<?php include 'backbuttonstudent.html'; ?>
 
 	</div>
 </body>

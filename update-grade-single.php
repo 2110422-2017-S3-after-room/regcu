@@ -10,15 +10,24 @@ require "session.php";
 require "common.php";
 
 if (isset($_POST['submit'])) {
+
   try {
     $cid = $_POST['cid'];
     for ($i=0; $i < count($_POST['sid']); $i++ ) {
-    $sid = $_POST['sid'][$i]; $grade = $_POST['grade'][$i];
-    $sql = ("UPDATE enroll 
-            SET grade = $grade
-            WHERE sid = $sid AND cid = $cid");
-    $result = mysqli_query($db,$sql);
+        $sid = $_POST['sid'][$i];
+        $grade = $_POST['grade'][$i];
+        $invalidgrade=array($sid);
+        
+        if($grade < 0 || $grade > 4){
+            array_push($invalidgrade,$sid);
+        }else{
+            
+        $sql = ("UPDATE enroll 
+                SET grade = $grade
+                WHERE sid = $sid AND cid = $cid ");
+        $result = mysqli_query($db,$sql);           
     }
+}
   } catch(PDOException $error) {
       echo $sql . "<br>" . $error->getMessage();
   }
@@ -30,7 +39,7 @@ if (isset($_GET['cid'])) {
     // $connection->query("use regcu;");
     $cid = $_GET['cid'];
 
-    $sql = "SELECT E.sid, S.fname, S.lname, E.grade
+    $sql = "SELECT E.sid, S.fname, S.lname, E.grade, SS.tid
             FROM enroll E, Student S, Section SS
             WHERE e.sid = s.sid and ss.yearr = e.yearr and ss.sem =
             e.sem and ss.cid = e.cid and ss.sec_id = e.sec_id and
@@ -40,6 +49,8 @@ if (isset($_GET['cid'])) {
     $statement->execute();
     $result = $statement->fetchAll();
     $user = $statement->fetch(PDO::FETCH_ASSOC);
+  
+    
   } catch(PDOException $error) {
       echo $sql . "<br>" . $error->getMessage();
   }
@@ -51,10 +62,14 @@ if (isset($_GET['cid'])) {
 
 ?>
 <?php require "templates/header.php"; ?>
-<h2>Update Grade</h2>
+<?php include 'splitleft-teacher.html'; ?>
+<div class="splitright">
 
-<table>
-    <thead>
+<?php include 'backbutton.html'; ?>
+<h1>Update Grade</h1>
+        <form method="post">
+<table class="data-table">
+    <thead class="data-table-thead" style=" overflow-y: auto; width:700px; overflow-x:hidden; height: 300px;">
         <tr>
             <th>Student's ID</th>
             <th>First name</th>
@@ -65,7 +80,7 @@ if (isset($_GET['cid'])) {
     <tbody>
     <?php foreach ($result as $row) : ?>
         <tr>
-        <form method="post">
+
             <input type="hidden" name="cid" value=<?php echo escape($cid); ?> class="field left" readonly>
             <td><?php echo escape($row["sid"]); ?>
               <input type="hidden" name="sid[]" value=<?php echo escape($row["sid"]); ?> class="field left" readonly>
@@ -76,13 +91,22 @@ if (isset($_GET['cid'])) {
             <td><?php echo escape($row["lname"]); ?>
               <input type="hidden" name="lname[]" value=<?php echo escape($row["lname"]); ?> class="field left" readonly>
             </td>
-            <td><input type="number" step="0.5" maxlength="3" id="grade" name="grade[]" value=<?= $row["grade"]?> onkeypress="return isNumberKey(event)" />
+            <td><input class="formtextboxsmall" type="number" max="4.0" min="0.0" step="0.5" maxlength="3" id="grade" name="grade[]" value=<?= $row["grade"]?> onkeypress="return isNumberKey(event)" />
             </td>
+                    
+    <?php endforeach; ?> 
         </tr>
-    <?php endforeach; ?>
-    <input type="submit" name="submit" value="Submit">
+        </tbody>
+    </table>
+    <br> 
+    <a class="gobacklink" style="display: inline-block; background-color:salmon;" href="update-grade.php">Back to update grade</a>
+     <input style="display: inline-block;" type="submit" name="submit" class="submitbutton" value="Submit">
     </form>
-    </tbody>
-</table>
-<a href="update-grade.php">Back to update grade</a>
+    
+<br><br>
+
+
+
+</div>
 <?php require "templates/footer.php"; ?>
+

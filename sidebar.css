@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Karla');
+@import url('https://fonts.googleapis.com/css?family=Pridi');
+    
     .accordion {
       background-color: #ffb3da;
       color: #444;
@@ -90,11 +92,11 @@
     h2{
       font-size: 20px;
     }
-    #regcu{
+
+    
+    .regcu{
       color: black;
+      font-family:'Pridi', sans-serif;
+      font-size: 30px;
     }
 
-body{
-  background-image: url('https://images.pexels.com/photos/242236/pexels-photo-242236.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-  background-repeat: no-repeat;
-}

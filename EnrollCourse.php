@@ -3,38 +3,19 @@
    include "checkstudent.php";
 ?>
 
-<!DOCTYPE html>
-<html>
-	<head>
-      <link rel="stylesheet" href="form.css">
-      <link rel="stylesheet" href= "backbutton.css">
 
-      <link rel="stylesheet" href= "sidebar.css">
-      <script type="text/javascript">
-         function addRow(){
-            var table = document.getElementById("myTable");
-            var rows = document.getElementById("myTable").rows.length;
-            var row = table.insertRow(rows);
-            for(var i = 0; i < 1; i++){
-               var cell1= row.insertCell(i);
-               var inputItem = document.createElement('input');
-               cell1.appendChild(inputItem);
-            }
-         }
-      </script>
-      <title>Enroll Course </title>
-   </head>
-   <?php include 'splitleft.html'; ?>
-   <body bgcolor = "#FFFFFF" >
-      <button class="back" onclick="location.href='studenthome.php'">◄</button>
+<?php include 'templates\header.php';
+      include 'splitleft.html'; ?>
+   <div class="splitright">
+      <?php include 'backbuttonstudent.html'; ?>
       <h1>Enroll Course</h1>
 	   <div align = "center">
-         <div style = "width:300px; border: solid 1px #333333; " align = "left">
-            <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>select semester and year</b></div>
+         <div class="form" style = "width:300px; border: solid 1px #333333; " align = "left">
+            <div style = "background-color:#333333; color:#FFFFFF; "><b>select course and section</b></div>
 				
             <div style = "margin:30px">
                
-               <form name = "myForm" action = "?" method = "post">
+               <form  name = "myForm" action = "?" method = "post" >
                   <label>course ID :</label>
                   <input type = "number" name = "courseID" class = "box" /><br><br>
                   <label> section  :</label>
@@ -42,7 +23,7 @@
                   <input type = "submit"  value = " Submit "/><br />
                </form>
               
-         </div></div></div>
+         </div></div></div></div>
    </body>
 
 </html>

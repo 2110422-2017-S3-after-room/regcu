@@ -27,6 +27,8 @@
           <td style="text-align:left;">' .$row['cname'].   '</td>
           <td>' .$row['credits']. '</td>
           <td>' .$row['tname'].   '</td>
+          <td> <a href="enroll.php?cid=<?= $row['.'cid'.']?""> Enroll </a></td>
+           
         </tr>';
       $no++;
     }?>
