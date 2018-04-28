@@ -3,8 +3,6 @@ if (isset($_POST['submit'])) {
 
   require "common.php";
   include "session.php";
-
-    $connection = new PDO($dsn, $username, $password, $options);
     
     $new_user = array(
       "tid" => $_POST['tid'],
@@ -29,7 +27,7 @@ if (isset($_POST['submit'])) {
      
     $sql2 = "INSERT INTO teacher
     (tid,tname,dep_id) 
-    VALUES(".$_POST['tid']." , ". $_POST['tname']." , ".$_POST['dep_id'].");";
+    VALUES('".$_POST['tid']."' , '". $_POST['tname']."' , '".$_POST['dep_id']."');";
     $result2 = mysqli_query($db,$sql2);
     if(!$result2){
       echo "Please go back to complete the form.";
@@ -40,22 +38,22 @@ if (isset($_POST['submit'])) {
  require "templates/header.php"; 
 
      if (isset($_POST['submit']) && $statement) { 
-?>
+?> 
       <blockquote><?php echo escape($_POST['tname']); ?> successfully added.</blockquote>
 <?php   } ?> 
-
+  <div style="padding-left: 100px;">
   <h2>Add a teacher</h2>
 
   <form method="post">
     <label for="tid">Teacher ID</label>
-    <input type="text" name="tid" id="tid">
+    <input type="text" name="tid" id="tid"><br><br>
     <label for="tname">Teacher Name</label>
-    <input type="text" name="tname" id="tname">
+    <input type="text" name="tname" id="tname"><br><br>
     <label for="dep_id">Department ID</label>
-    <input type="text" name="dep_id" id="dep_id">
-    <input type="submit" name="submit" value="Submit">
+    <input type="text" name="dep_id" id="dep_id"><br><br>
+    <input type="submit" name="submit" value="Submit"><br><br>
   </form>
 
   <a href="manageteacher.php">Back to manage teachers</a>
-
+  </div>
 <?php require "templates/footer.php"; ?>

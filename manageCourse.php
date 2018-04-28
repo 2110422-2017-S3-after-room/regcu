@@ -1,35 +1,23 @@
 <?php require "templates/header.php"; ?>
-<div style="padding-left: 20px;">
-<h2>Find course based on course's name, course's ID or course's credit</h2>
 
-<div style="width: 500px;padding-left:20px;" >
-<form method="post" class="form">
-  <label class="formtitle"> Find Course </label>
-  <br><br>
-  
-  <label for="cid" style="margin-left:40px;">Course ID : </label>
-  <input type="text" id="cid" name="cid">
-  <input class="submitbutton" type="submit" name="submit" value="View Results"  style="margin-left:40px;">
-  <br><br>
-</form>
-</div>
+<div style="padding-left: 100px;">
 
+  <div style="width: 1000px;" >
+  <form method="post" class="form">
+    <label class="formtitle"> Find Courses </label>
+    <br>
+    <h2>Based on name, ID, credit</h2>
+    <input type="text" id="cid" name="cid">
+    <input class="submitbutton" type="submit" name="submit" value="View Results"  style="margin-left:40px;">
+    <br>
+    <br>
+  </form>
+  <br>
+  <a href="staffhome.php" class="gobacklink">Back to main menu</a>
+  <a href="create-course.php" class="gobacklink">Add course</a>
+  </div>
 
 <?php
-if (isset($_GET["cid"])) {
-  try {
-    
-    $cid = $_GET["cid"];
-
-    $sql = "DELETE FROM course WHERE cid = :cid";
-
-    $statement = $connection->prepare($sql);
-    $statement->bindValue(':cid', $cid);
-    $statement->execute();
-  } catch(PDOException $error) {
-    echo $sql . "<br>" . $error->getMessage();
-  }
-}
 
 if (isset($_POST['submit'])) {
   try  {
@@ -59,8 +47,8 @@ if (isset($_POST['submit'])) {
   if ($result && $statement->rowCount() > 0) { ?>
     <h2>Results</h2>
 
-    <table class="data-table" style="overflow: scroll">
-      <thead style="display:">
+    <table class="data-table" style="display: block; overflow: scroll;height: 300px;">
+      <thead>
         <tr>
           <th>Course ID</th>
           <th>Course Name</th>
@@ -70,8 +58,7 @@ if (isset($_POST['submit'])) {
           <th>Delete Course</th>
         </tr>
       </thead>
-      <tbody style="display:block;height: 300px; overflow: auto;">
-        <!-- <caption>result</caption> -->
+      <tbody>
       <?php foreach ($result as $row) : ?>
         <tr>
           <td><?php echo escape($row["cid"]); ?></td>
@@ -80,7 +67,7 @@ if (isset($_POST['submit'])) {
           <td><a href='read-course-single.php?cid=<?=$row["cid"]?>'> View </a></td>
           <td><a href="update-course-single.php?cid=<?php echo escape($row["cid"]); ?>">Edit</a></td>
           
-          <td><a href="read-course.php?cid=<?php echo escape($row["cid"]); ?>">Delete</a></td>
+          <td><a href="delete-course.php?cid=<?php echo escape($row["cid"]); ?>">Delete</a></td>
         </tr>
       <?php endforeach; ?>
       </tbody>
@@ -89,11 +76,6 @@ if (isset($_POST['submit'])) {
       <blockquote>No results found for <?php echo escape($_POST['cid']); ?>.</blockquote>
     <?php } 
 } ?> 
-
-<br><br>
-<div style="text-align: center;">
-<a href="staffhome.php" class="gobacklink">Back to main menu</a>
-</div>
 
 
 </div>

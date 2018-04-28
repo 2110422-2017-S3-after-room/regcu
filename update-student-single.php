@@ -2,18 +2,17 @@
 
 /**
  * Use an HTML form to edit an entry in the
- * users table.
+ * students table.
  *
  */
 
-require "config.php";
+require "session.php";
 require "common.php";
 
 if (isset($_POST['submit'])) {
   try {
-    $connection = new PDO($dsn, $username, $password, $options);
 
-    $user =[
+    $student =[
       "sid" => $_POST['sid'],
       "nat_id"  => $_POST['nat_id'],
       "fname"     => $_POST['fname'],
@@ -24,13 +23,8 @@ if (isset($_POST['submit'])) {
       "group_id" => $_POST['group_id'],
       "enroll_year" => $_POST['enroll_year'],
       "stype" => $_POST['stype']
-      // ,"bdate" => $_POST['bdate'],
-      // "bplace" => $_POST['bplace'],
-      // "nat" => $_POST['nat'],
-      // "sex" => $_POST['sex'],
-      // "religion" => $_POST['religion']
     ];
-
+    
     $sql = "UPDATE student 
             SET sid = :sid, 
               nat_id = :nat_id, 
@@ -45,7 +39,7 @@ if (isset($_POST['submit'])) {
             WHERE sid = :sid";
   
   $statement = $connection->prepare($sql);
-  $statement->execute($user);
+  $statement->execute($student);
   } catch(PDOException $error) {
       echo $sql . "<br>" . $error->getMessage();
   }
@@ -53,7 +47,6 @@ if (isset($_POST['submit'])) {
   
 if (isset($_GET['sid'])) {
   try {
-    $connection = new PDO($dsn, $username, $password, $options);
     $sid = $_GET['sid'];
 
     $sql = "SELECT * FROM student WHERE sid = :sid";
@@ -61,7 +54,7 @@ if (isset($_GET['sid'])) {
     $statement->bindValue(':sid', $sid);
     $statement->execute();
     
-    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    $student = $statement->fetch(PDO::FETCH_ASSOC);
   } catch(PDOException $error) {
       echo $sql . "<br>" . $error->getMessage();
   }
@@ -72,19 +65,22 @@ if (isset($_GET['sid'])) {
 ?>
 
 <?php require "templates/header.php"; ?>
+
 <?php if (isset($_POST['submit']) && $statement) : ?>
-	<blockquote><?php echo escape($_POST['fname']); ?> <?php echo escape($_POST['lname']); ?> successfully updated.</blockquote>
+  <blockquote><?php echo escape($_POST['fname']); ?> <?php echo escape($_POST['lname']); ?> successfully updated.</blockquote>
 <?php endif; ?>
 
+<div style="padding-left: 100px;">
 <h2>Edit a student</h2>
 
 <form method="post">
-    <?php foreach ($user as $key => $value) : ?>
+    <?php foreach ($student as $key => $value) : ?>
       <label for="<?php echo $key; ?>"><?php echo ucfirst($key); ?></label>
-	    <input type="text" name="<?php echo $key; ?>" sid="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'sid' ? 'readonly' : null); ?>>
+      <input type="text" name="<?php echo $key; ?>" sid="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'sid' ? 'readonly' : null); ?>><br><br>
     <?php endforeach; ?> 
     <input type="submit" name="submit" value="Submit">
 </form>
 
-<a href="update-student.php">Back to update students</a>
+<a href="managestudent.php">Back to manage students</a>
+</div>
 <?php require "templates/footer.php"; ?>

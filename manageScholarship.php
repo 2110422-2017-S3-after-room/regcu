@@ -1,9 +1,98 @@
 <?php require "templates/header.php"; ?>
-<ul>
-  <li><a href="create-scholarship.php"><strong>Create</strong></a> - add a scholarship</li>
-  <li><a href="read-scholarship.php"><strong>Read</strong></a> - find a scholarship</li>
-  <li><a href="update-scholarship.php"><strong>Update</strong></a> - edit a scholarship</li>
-  <li><a href="delete-scholarship.php"><strong>Delete</strong></a> - delete a scholarship</li>
-</ul>
-<a href="staffhome.php">Back to home</a>
+
+<div style="padding-left: 100px;">
+
+  <div style="width: 1000px;" >
+  <form method="post" class="form">
+    <label class="formtitle"> Find scholarships </label>
+    <br>
+    <h2>Based on name, year, owner</h2>
+    <input type="text" id="sch_name" name="sch_name">
+    <input class="submitbutton" type="submit" name="submit" value="View Results"  style="margin-left:40px;">
+    <br>
+    <br>
+  </form>
+  <br>
+  <a href="staffhome.php" class="gobacklink">Back to main menu</a>
+  <a href="create-scholarship.php" class="gobacklink">Add new scholarship</a>
+  </div>
+
+<?php
+
+if (isset($_POST['submit'])) {
+  try  {
+      
+    require "session.php";
+    require "common.php";
+
+    // $connection = new PDO($dsn, $username, $password, $options);
+
+    $sch_name = $_POST['sch_name'];
+    $sql = "SELECT * FROM scholarship
+            WHERE sch_name like '%$sch_name%' 
+            or sch_year like '%$sch_name%' 
+            or sch_owner like '%$sch_name%'
+            ";
+
+    $statement = $connection->prepare($sql);
+    $statement->bindParam(':sch_name', $sch_name, PDO::PARAM_STR);
+    $statement->execute();
+
+    $result = $statement->fetchAll();
+  } catch(PDOException $error) {
+      echo $sql . "<br>" . $error->getMessage();
+  }
+}
+?>
+        
+<?php  
+if (isset($_POST['submit'])) {
+  if ($result && $statement->rowCount() > 0) { ?>
+    <h2>Results</h2>
+
+    <table class="data-table" style="display: block; overflow: scroll;height: 300px;">
+      <thead>
+        <tr>
+          <th>Scholarship's year</th>
+          <th>Name</th>
+          <th>Owner</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+      <?php foreach ($result as $row) : ?>
+        <tr>
+          <td><?php echo escape($row["sch_year"]); ?></td>
+          <td><?php echo escape($row["sch_name"]); ?></td>
+          <td><?php echo escape($row["sch_owner"]); ?></td>
+          <td><?php echo escape($row["sch_amount"]); ?></td>
+          <td><a href="update-scholarship-single.php?sch_name=<?php echo escape($row["sch_name"]); ?>">Edit</a></td>
+          
+          <td><a href="delete-scholarship.php?sch_name=<?php echo escape($row["sch_name"]); ?>">Delete</a></td>
+        </tr>
+      <?php endforeach; ?>
+      </tbody>
+    </table>
+    <?php } else { ?>
+      <blockquote>No results found for <?php echo escape($_POST['sch_name']); ?>.</blockquote>
+    <?php } 
+} ?> 
+
+
+</div>
+<script>
+ 
+  var $table = $('data-table')
+  var  $bodyCells=$table.find('tbody tr:first').children(),
+  colWidth;
+
+  colWidth= $bodyCells.map(function(){
+    return $(this).width();
+  }).get();
+
+  $table.find('thead tr').children().each(function(i,v){
+    $(v).width(colWidth[i]);
+  });
+  
+</script>
 <?php require "templates/footer.php"; ?>

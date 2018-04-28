@@ -15,11 +15,6 @@ if (isset($_POST['submit'])) {
       "group_id" => $_POST['group_id'],
       "enroll_year" => $_POST['enroll_year'],
       "stype" => $_POST['stype']
-      // ,"bdate" => $_POST['bdate'],
-      // "bplace" => $_POST['bplace'],
-      // "nat" => $_POST['nat'],
-      // "sex" => $_POST['sex'],
-      // "religion" => $_POST['religion']
     );
 
     $sql =  "SELECT count(*) as countt FROM student S WHERE S.sid =".$_POST['sid'].";";
@@ -52,7 +47,7 @@ if (isset($_POST['submit'])) {
      
     $sql2 = "INSERT INTO student
     (sid,nat_id,fname,lname,conduct_score,dep_id,advisor_id,group_id,enroll_year,stype) 
-    VALUES(".$_POST['sid']." , ". $_POST['nat_id']." , '".$_POST['fname']."', '".$_POST['lname']."', ".$_POST['conduct_score'].", ".$_POST['dep_id'].", ".$_POST['advisor_id'].", ".$_POST['group_id'].", ".$_POST['enroll_year'].", ".$_POST['stype'].");";
+    VALUES('".$_POST['sid']."' , '". $_POST['nat_id']."' , '".$_POST['fname']."', '".$_POST['lname']."', '".$_POST['conduct_score']."', '".$_POST['dep_id']."', '".$_POST['advisor_id']."', '".$_POST['group_id']."', '".$_POST['enroll_year']."', '".$_POST['stype']."');";
     $result2 = mysqli_query($db,$sql2);
     if(!$result2){
       echo "Please go back to complete the form.";
@@ -67,33 +62,33 @@ if (isset($_POST['submit'])) {
       <blockquote><?php echo escape($_POST['fname']); ?> <?php echo escape($_POST['lname']); ?> successfully added.</blockquote>
 <?php   } ?> 
 
-
+<div style="padding-left: 100px;">
   <h2>Add a student</h2>
 
-  <form method="post"n action="?">
+  <form method="post" action="?">
     <label for="sid">Student ID</label>
-    <input type="text" name="sid" id="sid">
+    <input type="text" name="sid" id="sid"><br><br>
     <label for="nat_id">National ID</label>
-    <input type="text" name="nat_id" id="nat_id">
+    <input type="text" name="nat_id" id="nat_id"><br><br>
     <label for="fname">First Name</label>
-    <input type="text" name="fname" id="fname">
+    <input type="text" name="fname" id="fname"><br><br>
     <label for="lname">Last Name</label>
-    <input type="text" name="lname" id="lname">
+    <input type="text" name="lname" id="lname"><br><br>
     <label for="conduct_score">Conduct Score</label>
-    <input type="text" name="conduct_score" id="conduct_score" value="100">
+    <input type="text" name="conduct_score" id="conduct_score" value="100"><br><br>
     <label for="dep_id">Department ID</label>
-    <input type="text" name="dep_id" id="dep_id">
+    <input type="text" name="dep_id" id="dep_id"><br><br>
     <label for="advisor_id">Advisor's ID</label>
-    <input type="text" name="advisor_id" id="advisor_id">
+    <input type="text" name="advisor_id" id="advisor_id"><br><br>
     <label for="group_id">Group ID</label>
-    <input type="text" name="group_id" id="group_id">
+    <input type="text" name="group_id" id="group_id"><br><br>
     <label for="enroll_year">Enroll Year</label>
-    <input type="text" name="enroll_year" id="enroll_year">
-    <label for="stype">Stype</label>
-    <input type="text" name="stype" id="stype">
+    <input type="text" name="enroll_year" id="enroll_year"><br><br>
+    <label for="stype">Scholarship type</label>
+    <input type="text" name="stype" id="stype"><br><br>
     <input type="submit" name="submit" value="Submit">
   </form>
 
   <a href="managestudent.php">Back to manage students</a>
-
+</div>
 <?php require "templates/footer.php"; ?>

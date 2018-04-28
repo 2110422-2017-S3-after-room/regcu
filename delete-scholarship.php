@@ -4,43 +4,53 @@
  * Delete a user
  */
 
-require "config.php";
 require "common.php";
+require "session.php";
 
-if (isset($_GET["sch_name"])) {
+if (isset($_GET["cc"])) {
   try {
+    $sch_name = $_GET["cc"];
     $connection = new PDO($dsn, $username, $password, $options);
-  
-    $sch_name = $_GET["sch_name"];
+    $connection->query("use regcu");
+    $sql = "DELETE FROM scholarship WHERE sch_name = $sch_name";
 
-    $sql = "DELETE FROM scholarship WHERE sch_name = :sch_name";
+    $result = mysqli_query($db, $sql);
+    if(!$result){
+      echo "Error deleting";
+   ;   exit();
+  }
 
-    $statement = $connection->prepare($sql);
-    $statement->bindValue(':sch_name', $sch_name);
-    $statement->execute();
   } catch(PDOException $error) {
     echo $sql . "<br>" . $error->getMessage();
   }
 }
 
-try {
-  $connection = new PDO($dsn, $username, $password, $options);
+if (isset($_GET["sch_name"])) {
+  try {
+    $sch_name = $_GET["sch_name"];
+    $connection = new PDO($dsn, $username, $password, $options);
+    $connection->query("use regcu");
+    $sql = "SELECT * FROM scholarship WHERE sch_name = $sch_name";
 
-  $sql = "SELECT * FROM scholarship";
+    $statement = $connection->prepare($sql);
+    $statement->execute();
 
-  $statement = $connection->prepare($sql);
-  $statement->execute();
+    $result = $statement->fetchAll();
+  } catch(PDOException $error) {
+    echo $sql . "<br>" . $error->getMessage();
+  }
+}
 
-  $result = $statement->fetchAll();
-} catch(PDOException $error) {
-  echo $sql . "<br>" . $error->getMessage();
+
+if (isset($_GET["cc"])) {
+    header('Location: managescholarship.php');
 }
 ?>
 <?php require "templates/header.php"; ?>
-        
-<h2>Delete scholarships</h2>
+<div style="padding-left: 100px;">
+<h2>Delete Scholarship</h2>
 
-<table>
+<table class="data-table" style="display: block; height: 100px;">
   <thead>
     <tr>
       <th>Scholarship's year</th>
@@ -56,12 +66,17 @@ try {
       <td><?php echo escape($row["sch_name"]); ?></td>
       <td><?php echo escape($row["sch_owner"]); ?></td>
       <td><?php echo escape($row["sch_amount"]); ?></td>
-      <td><a href="delete-scholarship.php?sch_name=<?php echo escape($row["sch_name"]); ?>">Delete</a></td>
     </tr>
   <?php endforeach; ?>
   </tbody>
 </table>
+<h2>Are you sure you want to permanently delete this scholarship?</h2>
+<form>
+  <a href="delete-scholarship.php?cc=<?php echo escape($row["sch_name"]); ?>" class="gobacklink">YES</a> <-->
+  <a href="managescholarship.php" class="gobacklink">NO</a>
+</form>
+<br>
 
 <a href="managescholarship.php">Back to manage scholarship</a>
-
+</div>
 <?php require "templates/footer.php"; ?>

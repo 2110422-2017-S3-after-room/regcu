@@ -6,12 +6,11 @@
  *
  */
 
-require "config.php";
+require "session.php";
 require "common.php";
 
 if (isset($_POST['submit'])) {
   try {
-    $connection = new PDO($dsn, $username, $password, $options);
 
     $user =[
       "tid"        => $_POST['tid'],
@@ -34,7 +33,6 @@ if (isset($_POST['submit'])) {
   
 if (isset($_GET['tid'])) {
   try {
-    $connection = new PDO($dsn, $username, $password, $options);
     $tid = $_GET['tid'];
 
     $sql = "SELECT * FROM teacher WHERE tid = :tid";
@@ -57,16 +55,16 @@ if (isset($_GET['tid'])) {
 <?php if (isset($_POST['submit']) && $statement) : ?>
 	<blockquote><?php echo escape($_POST['tname']); ?> successfully updated.</blockquote>
 <?php endif; ?>
-
-<h2>Edit a user</h2>
+<div style="padding-left: 100px;">
+<h2>Edit a teacher</h2>
 
 <form method="post">
     <?php foreach ($user as $key => $value) : ?>
       <label for="<?php echo $key; ?>"><?php echo ucfirst($key); ?></label>
-	    <input type="text" name="<?php echo $key; ?>" tid="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'tid' ? 'readonly' : null); ?>>
+	    <input type="text" name="<?php echo $key; ?>" tid="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'tid' ? 'readonly' : null); ?>><br><br>
     <?php endforeach; ?> 
     <input type="submit" name="submit" value="Submit">
 </form>
-
-<a href="update-teacher.php">Back to update teachers</a>
+<a href="manageteacher.php">Back to manage teachers</a>
+</div>
 <?php require "templates/footer.php"; ?>

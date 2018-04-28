@@ -32,9 +32,10 @@ if (isset($_GET['cid'])) {
 	<blockquote><?php echo escape($_POST['cname']); ?> successfully updated.</blockquote>
 <?php endif; ?>
 
-<h2>Edit a user</h2>
+<div style="padding-left: 100px;">
+<h2>The course's sections</h2>
 
-<table class="data-table">
+<table class="data-table" style="display: block; height: 100px;">
   <caption> <?= $cid ?> </caption>
   <thead> 
     <th> section id</th>
@@ -62,5 +63,6 @@ if (isset($_GET['cid'])) {
    </tbody>
 </table>
 
-<a href="read-course.php">Back to read courses</a>
+<a href="managecourse.php">Back to manage courses</a>
+</div>
 <?php require "templates/footer.php"; ?>

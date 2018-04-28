@@ -56,16 +56,18 @@ if (isset($_GET['cid'])) {
 <?php if (isset($_POST['submit']) && $statement) : ?>
 	<blockquote><?php echo escape($_POST['cname']); ?> successfully updated.</blockquote>
 <?php endif; ?>
-
+<div style="padding-left: 100px;">
 <h2>Edit a user</h2>
 
 <form method="post">
     <?php foreach ($user as $key => $value) : ?>
       <label for="<?php echo $key; ?>"><?php echo ucfirst($key); ?></label>
-	    <input type="text" name="<?php echo $key; ?>" cid="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'cid' ? 'readonly' : null); ?>>
+	    <input type="text" name="<?php echo $key; ?>" cid="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'cid' ? 'readonly' : null); ?>><br><br>
     <?php endforeach; ?> 
+    <br>
     <input type="submit" name="submit" value="Submit">
 </form>
-
-<a href="read-course.php">Back to update courses</a>
+<br>
+<a href="managecourse.php">Back to manage courses</a>
+</div>
 <?php require "templates/footer.php"; ?>

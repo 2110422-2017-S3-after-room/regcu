@@ -4,48 +4,58 @@
  * Delete a user
  */
 
-require "config.php";
 require "common.php";
+require "session.php";
 
-if (isset($_GET["tid"])) {
+if (isset($_GET["cc"])) {
   try {
+    $tid = $_GET["cc"];
     $connection = new PDO($dsn, $username, $password, $options);
-  
-    $tid = $_GET["tid"];
+    $connection->query("use regcu");
+    $sql = "DELETE FROM teacher WHERE tid = $tid";
 
-    $sql = "DELETE FROM teacher WHERE tid = :tid";
+    $result = mysqli_query($db, $sql);
+    if(!$result){
+      echo "Error deleting";
+   ;   exit();
+  }
 
-    $statement = $connection->prepare($sql);
-    $statement->bindValue(':tid', $tid);
-    $statement->execute();
   } catch(PDOException $error) {
     echo $sql . "<br>" . $error->getMessage();
   }
 }
 
-try {
-  $connection = new PDO($dsn, $username, $password, $options);
+if (isset($_GET["tid"])) {
+  try {
+    $tid = $_GET["tid"];
+    $connection = new PDO($dsn, $username, $password, $options);
+    $connection->query("use regcu");
+    $sql = "SELECT * FROM teacher WHERE tid = $tid";
 
-  $sql = "SELECT * FROM teacher";
+    $statement = $connection->prepare($sql);
+    $statement->execute();
 
-  $statement = $connection->prepare($sql);
-  $statement->execute();
+    $result = $statement->fetchAll();
+  } catch(PDOException $error) {
+    echo $sql . "<br>" . $error->getMessage();
+  }
+}
 
-  $result = $statement->fetchAll();
-} catch(PDOException $error) {
-  echo $sql . "<br>" . $error->getMessage();
+
+if (isset($_GET["cc"])) {
+    header('Location: manageteacher.php');
 }
 ?>
 <?php require "templates/header.php"; ?>
-        
-<h2>Delete teachers</h2>
+<div style="padding-left: 100px;">
+<h2>Delete Teacher</h2>
 
-<table>
+<table class="data-table" style="display: block; height: 100px;">
   <thead>
     <tr>
-      <th>teacher ID</th>
-      <th>teacher Name</th>
-      <th>dep_id</th>
+      <th>Teacher ID</th>
+      <th>Teacher Name</th>
+      <th>Department ID</th>
     </tr>
   </thead>
   <tbody>
@@ -54,12 +64,17 @@ try {
       <td><?php echo escape($row["tid"]); ?></td>
       <td><?php echo escape($row["tname"]); ?></td>
       <td><?php echo escape($row["dep_id"]); ?></td>
-      <td><a href="delete-teacher.php?tid=<?php echo escape($row["tid"]); ?>">Delete</a></td>
     </tr>
   <?php endforeach; ?>
   </tbody>
 </table>
+<h2>Are you sure you want to permanently delete this teacher?</h2>
+<form>
+  <a href="delete-teacher.php?cc=<?php echo escape($row["tid"]); ?>" class="gobacklink">YES</a> <-->
+  <a href="manageteacher.php" class="gobacklink">NO</a>
+</form>
+<br>
 
 <a href="manageteacher.php">Back to manage teacher</a>
-
+</div>
 <?php require "templates/footer.php"; ?>
