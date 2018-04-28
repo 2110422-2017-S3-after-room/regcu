@@ -82,9 +82,11 @@ if (isset($_GET['cid'])) {
         <tr>
 
             <input type="hidden" name="cid" value=<?php echo escape($cid); ?> class="field left" readonly>
+
             <td><?php echo escape($row["sid"]); ?>
               <input type="hidden" name="sid[]" value=<?php echo escape($row["sid"]); ?> class="field left" readonly>
             </td>
+            
             <td><?php echo escape($row["fname"]); ?>
               <input type="hidden" name="fname[]" value=<?php echo escape($row["fname"]); ?> class="field left" readonly>
             </td>

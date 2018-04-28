@@ -6,7 +6,7 @@
 
 require "common.php";
 require "session.php";
-
+require "checkstaff.php";
 if (isset($_GET["cc"])) {
   try {
     $sid = $_GET["cc"];

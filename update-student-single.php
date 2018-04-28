@@ -8,7 +8,7 @@
 
 require "session.php";
 require "common.php";
-
+require "checkstaff.php";
 if (isset($_POST['submit'])) {
   try {
 
@@ -64,23 +64,30 @@ if (isset($_GET['sid'])) {
 }
 ?>
 
-<?php require "templates/header.php"; ?>
+<?php require "templates/header.php"; 
+      include "splitleft-staff.html";      
+?>
 
-<?php if (isset($_POST['submit']) && $statement) : ?>
-  <blockquote><?php echo escape($_POST['fname']); ?> <?php echo escape($_POST['lname']); ?> successfully updated.</blockquote>
-<?php endif; ?>
+<div class="splitright">
+  <?php include "backbuttonstaff.html"; ?>
+<div style="padding-left: 20px; ">
+<h1>Edit a student</h1>
 
-<div style="padding-left: 100px;">
-<h2>Edit a student</h2>
-
-<form method="post">
+<form method="post" class="form" style="min-width: 400px; padding-bottom: 20px;">
+  <label class="formtitle"> Edit a student </label><br><br>
     <?php foreach ($student as $key => $value) : ?>
       <label for="<?php echo $key; ?>"><?php echo ucfirst($key); ?></label>
       <input type="text" name="<?php echo $key; ?>" sid="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'sid' ? 'readonly' : null); ?>><br><br>
     <?php endforeach; ?> 
-    <input type="submit" name="submit" value="Submit">
+    <input  class="submitbutton" type="submit" name="submit" value="Submit">
 </form>
 
-<a href="managestudent.php">Back to manage students</a>
+</div>
+<br>
+<a class="gobacklink" href="managestudent.php">Back to manage students</a><br>
+<?php if (isset($_POST['submit']) && $statement) : ?>
+  <blockquote><?php echo escape($_POST['fname']); ?> <?php echo escape($_POST['lname']); ?> successfully updated.</blockquote>
+<?php endif; ?>
+
 </div>
 <?php require "templates/footer.php"; ?>

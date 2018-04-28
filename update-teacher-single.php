@@ -50,21 +50,31 @@ if (isset($_GET['tid'])) {
 }
 ?>
 
-<?php require "templates/header.php"; ?>
+<?php require "templates/header.php"; 
+      include "splitleft-teacher.html" ?>
 
-<?php if (isset($_POST['submit']) && $statement) : ?>
-	<blockquote><?php echo escape($_POST['tname']); ?> successfully updated.</blockquote>
-<?php endif; ?>
-<div style="padding-left: 100px;">
-<h2>Edit a teacher</h2>
+<div class="splitright">
+  <?php include "backbuttonstaff.html"; ?>
+<div style="padding-left: 20px;">
+<h1>Edit a teacher</h1>
 
-<form method="post">
+<form method="post" class="form" style="padding-bottom: 20px; min-width: 300px;">   <label class="formtitle"> Edit a teacher </label><br><br>
     <?php foreach ($user as $key => $value) : ?>
       <label for="<?php echo $key; ?>"><?php echo ucfirst($key); ?></label>
-	    <input type="text" name="<?php echo $key; ?>" tid="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'tid' ? 'readonly' : null); ?>><br><br>
+
+	    <input type="text" class="formtextbox" name="<?php echo $key; ?>" tid="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'tid' ? 'readonly' : null); ?>>
+
+      <br><br>
     <?php endforeach; ?> 
-    <input type="submit" name="submit" value="Submit">
+    <input type="submit" name="submit" value="Submit" class="submitbutton">
 </form>
-<a href="manageteacher.php">Back to manage teachers</a>
+<br>
+<br>
+<a class="gobacklink" href="manageteacher.php">Back to manage teachers</a>
 </div>
+<?php if (isset($_POST['submit']) && $statement) : ?>
+  <blockquote><?php echo escape($_POST['tname']); ?> successfully updated.</blockquote>
+<?php endif; ?>
+</div>
+
 <?php require "templates/footer.php"; ?>

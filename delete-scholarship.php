@@ -6,12 +6,13 @@
 
 require "common.php";
 require "session.php";
+require "checkstaff.php";
 
 if (isset($_GET["cc"])) {
   try {
     $sch_name = $_GET["cc"];
-    $connection = new PDO($dsn, $username, $password, $options);
-    $connection->query("use regcu");
+    // // $connection = new PDO($dsn, $username, $password, $options);
+    // $connection->query("use regcu");
     $sql = "DELETE FROM scholarship WHERE sch_name = $sch_name";
 
     $result = mysqli_query($db, $sql);
@@ -46,7 +47,10 @@ if (isset($_GET["cc"])) {
     header('Location: managescholarship.php');
 }
 ?>
-<?php require "templates/header.php"; ?>
+<?php require "templates/header.php";
+  include "splitleft-staff.html" ?>
+  <div class="splitright">
+    <?php include "backbuttonstaff.html"; ?>
 <div style="padding-left: 100px;">
 <h2>Delete Scholarship</h2>
 
@@ -77,6 +81,6 @@ if (isset($_GET["cc"])) {
 </form>
 <br>
 
-<a href="managescholarship.php">Back to manage scholarship</a>
-</div>
+<a href="managescholarship.php" class="gobacklink">Back to manage scholarship</a>
+</div></div>
 <?php require "templates/footer.php"; ?>

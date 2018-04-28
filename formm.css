@@ -1,0 +1,17 @@
+.formdropdown {
+	font-family: 'Pridi', serif;
+	font-size: 16px;
+	max-width: 500px;
+	text-overflow: wrap;
+}
+.formdropdown option{
+	font-family: 'Pridi', serif;
+	font-size: 16px;
+	max-width: 500px;
+	text-overflow: wrap;
+}
+.formnumberbox{
+	font-family: 'Pridi', serif;
+	font-size: 16px;
+	width: 60px;
+}

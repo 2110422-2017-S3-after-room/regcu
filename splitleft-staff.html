@@ -1,0 +1,41 @@
+
+<div class="splitleft" style="background-image: url('http://notgoaway.com/wp-content/uploads/2017/08/Pink-Background-115-Go.jpg'); height: 175vh;">
+
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Phra_Kiao.svg/1200px-Phra_Kiao.svg.png"  style="max-width:50%;
+max-height:120%; padding-bottom:20px;">
+  <p class="regcu">REG CU</p>
+  <div class = "asdf">
+  <button class="accordion" onclick="location.href='manageCourse.php'"> Manage Course </button>
+  <div class = "panel"></div>
+
+  <button class="accordion" onclick="location.href='manageTeacher.php'"> Manage Teacher </button>
+  <div class = "panel"></div>
+
+   <button class="accordion" onclick="location.href='manageStudent.php'"> Manage Student </button>
+  <div class = "panel"></div>
+
+   <button class="accordion" onclick="location.href='manageScholarship.php'"> Manage Scholarship </button>
+  <div class = "panel"></div>
+</div>
+
+
+<script>
+  var acc = document.getElementsByClassName("accordion");
+      var i;
+      for (i = 0 ; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+          /* Toggle between adding and removing the "active" class,
+          to highlight the button that controls the panel */
+          this.classList.toggle("active");
+
+          /* Toggle between hiding and showing the active panel */
+          var panel = this.nextElementSibling;
+          if (panel.style.display === "block") {
+              panel.style.display = "none";
+          } else {
+              panel.style.display = "block";
+          }
+          });
+      }
+</script>
+</div>

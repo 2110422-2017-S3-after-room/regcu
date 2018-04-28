@@ -1,19 +1,22 @@
-<?php require "templates/header.php"; ?>
-
-<div style="padding-left: 100px;">
-
-  <div style="width: 1000px;" >
+<?php require "templates/header.php";
+  include "splitleft-staff.html";
+ ?>
+<div class="splitright">
+<?php include "backbuttonstaff.html" ?>
+<div style="padding-left: 10px;">
+  <h1> Manage Scholarship </h1><br>
+  <div style="width: 400px;" >
   <form method="post" class="form">
     <label class="formtitle"> Find scholarships </label>
     <br>
     <h2>Based on name, year, owner</h2>
-    <input type="text" id="sch_name" name="sch_name">
+    <input class="formtextbox" type="text" id="sch_name" name="sch_name">
     <input class="submitbutton" type="submit" name="submit" value="View Results"  style="margin-left:40px;">
     <br>
     <br>
   </form>
   <br>
-  <a href="staffhome.php" class="gobacklink">Back to main menu</a>
+  <!-- <a href="staffhome.php" class="gobacklink">Back to main menu</a> -->
   <a href="create-scholarship.php" class="gobacklink">Add new scholarship</a>
   </div>
 
@@ -24,7 +27,7 @@ if (isset($_POST['submit'])) {
       
     require "session.php";
     require "common.php";
-
+    require "checkstaff.php";
     // $connection = new PDO($dsn, $username, $password, $options);
 
     $sch_name = $_POST['sch_name'];
@@ -57,6 +60,8 @@ if (isset($_POST['submit'])) {
           <th>Name</th>
           <th>Owner</th>
           <th>Amount</th>
+          <th>Edit </th>
+          <th> Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -95,4 +100,5 @@ if (isset($_POST['submit'])) {
   });
   
 </script>
+</div>
 <?php require "templates/footer.php"; ?>

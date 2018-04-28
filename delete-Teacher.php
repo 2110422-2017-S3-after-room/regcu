@@ -6,7 +6,7 @@
 
 require "common.php";
 require "session.php";
-
+require "checkstaff.php";
 if (isset($_GET["cc"])) {
   try {
     $tid = $_GET["cc"];
@@ -17,12 +17,13 @@ if (isset($_GET["cc"])) {
     $result = mysqli_query($db, $sql);
     if(!$result){
       echo "Error deleting";
-   ;   exit();
-  }
-
+      exit();
+    }
+    header('Location: manageteacher.php');
   } catch(PDOException $error) {
     echo $sql . "<br>" . $error->getMessage();
   }
+
 }
 
 if (isset($_GET["tid"])) {
@@ -41,14 +42,14 @@ if (isset($_GET["tid"])) {
   }
 }
 
-
-if (isset($_GET["cc"])) {
-    header('Location: manageteacher.php');
-}
 ?>
-<?php require "templates/header.php"; ?>
+
+<?php require "templates/header.php"; 
+      include "splitleft-staff.html";?>
+<div class="splitright">
+  <?php include "backbuttonstaff.html";?>
 <div style="padding-left: 100px;">
-<h2>Delete Teacher</h2>
+<h1>Delete Teacher</h1>
 
 <table class="data-table" style="display: block; height: 100px;">
   <thead>
@@ -73,8 +74,8 @@ if (isset($_GET["cc"])) {
   <a href="delete-teacher.php?cc=<?php echo escape($row["tid"]); ?>" class="gobacklink">YES</a> <-->
   <a href="manageteacher.php" class="gobacklink">NO</a>
 </form>
-<br>
+<br><br>
 
-<a href="manageteacher.php">Back to manage teacher</a>
-</div>
+<a class= "gobacklink" href="manageteacher.php">Back to manage teacher</a>
+</div></div>
 <?php require "templates/footer.php"; ?>

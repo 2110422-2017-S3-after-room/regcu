@@ -3,10 +3,9 @@ if (isset($_POST['submit'])) {
 
   require "common.php";
   include "session.php";
+  include "checkstaff.php";
 
-    // $connection = new PDO($dsn, $username, $password, $options);
-    // $connection->query("use regcu");
-        $new_user = array(
+      $new_user = array(
       "cid" => $_POST['cid'],
       "cname"  => $_POST['cname'],
       "credits"     => $_POST['credits'],
@@ -29,7 +28,9 @@ if (isset($_POST['submit'])) {
     $statement->execute($new_user);
      
     $sql2 = "INSERT INTO course VALUES('".$_POST['cid']."' , '".$_POST['cname']."' , '".$_POST['credits']."', '".$_POST['cnameshort']."');";
+
     $result2 = mysqli_query($db,$sql2);
+
     if(!$result2){
       echo "Please go back to complete the form correctly.";
       exit();
@@ -37,26 +38,32 @@ if (isset($_POST['submit'])) {
  }
 
  require "templates/header.php"; 
-
-     if (isset($_POST['submit']) && $statement) { 
+ include "splitleft-staff.html"; 
+ ?>
+<div class="splitright">
+<?php     
+    if (isset($_POST['submit']) && $statement) { 
 ?>
       <blockquote><?php echo escape($_POST['cname']); ?> successfully added.</blockquote>
 <?php   } ?> 
-<div style="padding-left: 100px;">
-  <h2>Add a course</h2>
+<div style="padding-left: 10px; width:500px;">
+  <h1>Add a course</h1>
 
-  <form method="post">
+  <form method="post"  class="form" style="padding-bottom:20px;">
+    <label class="formtitle">Add a course </label>
+    <br>
     <label for="cid">Course ID</label>
-    <input type="text" name="cid" id="cid"><br><br>
+    <input type="text" name="cid" id="cid"><br>
     <label for="cname">Course Name</label>
-    <input type="text" name="cname" id="cname"><br><br>
+    <input type="text" name="cname" id="cname"><br>
     <label for="credits">Credits</label>
-    <input type="text" name="credits" id="credits"><br><br>
-    <label for="cnameshort">Course Name(short)</label>
+    <input type="text" name="credits" id="credits"><br>
+    <label for="cnameshort">Abbrev. name</label>
     <input type="text" name="cnameshort" id="cnameshort"><br><br>
-    <input type="submit" name="submit" value="Submit">
+    <input type="submit" name="submit" value="Submit" class="submitbutton"><br>
   </form>
+  <br>
+  <a href="managecourse.php" class="gobacklink">Back to manage courses</a>
 
-  <a href="managecourse.php">Back to manage courses</a>
-</div>
+</div></div>
 <?php require "templates/footer.php"; ?>

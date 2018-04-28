@@ -1,21 +1,3 @@
-<?php require "templates/header.php"; ?>
-
-<div style="padding-left: 100px;">
-
-  <div style="width: 1000px;" >
-  <form method="post" class="form">
-    <label class="formtitle"> Find Teachers </label>
-    <br>
-    <h2>Based on ID, name, department's ID</h2>
-    <input type="text" id="tid" name="tid">
-    <input class="submitbutton" type="submit" name="submit" value="View Results"  style="margin-left:40px;">
-    <br>
-    <br>
-  </form>
-  <br>
-  <a href="staffhome.php" class="gobacklink">Back to main menu</a>
-  <a href="create-teacher.php" class="gobacklink">Add new teacher</a>
-  </div>
 
 <?php
 
@@ -24,12 +6,14 @@ if (isset($_POST['submit'])) {
       
     require "session.php";
     require "common.php";
-
+    include 'checkstaff.php';
     // $connection = new PDO($dsn, $username, $password, $options);
 
     $tid = $_POST['tid'];
+    $tname = $_POST['tname'];
+    $dep_id = $_POST['dep_id'];
     $sql = "SELECT * FROM teacher
-            WHERE tid like '$tid%' or tname like '%$tid%' or dep_id like '$tid%'";
+            WHERE tid like '%$tid%' and tname like '%$tname%' and dep_id like '$dep_id%'";
 
     $statement = $connection->prepare($sql);
     $statement->bindParam(':tid', $tid, PDO::PARAM_STR);
@@ -41,18 +25,56 @@ if (isset($_POST['submit'])) {
   }
 }
 ?>
+
+
+<?php require "templates/header.php"; 
+    include "splitleft-staff.html";
+    
+?>
+<div class="splitright">
+  <?php include 'backbuttonstaff.html';?>
+<div style="padding: 20px;">
+ 
+  <h1> Manage Teacher </h1>
+  <div style="width: 400px;margin-top:20px;padding-bottom: 20px;">
+  <form method="post" class="form" >
+    <label class="formtitle"> Find Teachers </label>
+    <br>
+    <h2>Based on ID, name, department's ID</h2>
+    <label> Teacher ID</label>
+    <input type="text" id="tid" name="tid" class="formtextbox">
+    <br><label> Teacher Name</label>
+    <input type="text" id="tname" name="tname" class="formtextbox">
+    <br><label> Department ID</label>
+    <input type="text" id="dep_id" name="dep_id" class="formtextbox">
+    <br><br><input class="submitbutton" type="submit" name="submit" value="View Results"  style="margin-left:40px;">
+    <br>
+    <br>
+  </form>
+  <br>
+  
+  <a href="staffhome.php" class="gobacklink">Back to main menu</a>
+
+  <a href="create-teacher.php" class="gobacklink">Add new teacher</a>
+  
+  </div>
+
         
 <?php  
 if (isset($_POST['submit'])) {
   if ($result && $statement->rowCount() > 0) { ?>
     <h2>Results</h2>
 
-    <table class="data-table" style="display: block; overflow: scroll;height: 300px;">
+    <table class="data-table" 
+    style="display: block; overflow-y:scroll; height: 300px; min-width: 300px; max-width:550px;">
+
       <thead>
         <tr>
           <th>Teacher's ID</th>
           <th>Name</th>
           <th>Department's ID</th>
+          <th> Edit </th>
+          <th> Delete </th>
         </tr>
       </thead>
       <tbody>
@@ -90,4 +112,5 @@ if (isset($_POST['submit'])) {
   });
   
 </script>
+</div>
 <?php require "templates/footer.php"; ?>

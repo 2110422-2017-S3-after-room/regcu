@@ -1,16 +1,36 @@
+
+<?php 
+    require "session.php";
+    require "common.php";
+    require "checkstaff.php"; 
+?>
+
+
 <?php require "templates/header.php"; ?>
 
-<div style="padding-left: 100px;">
+<?php include "splitleft-staff.html"; ?>
+<div class="splitright">
+  <?php include "backbuttonstaff.html" ?>
+<div style="padding-left: 10px;">
 
-  <div style="width: 1000px;" >
+  <h1>Manage Course</h1><br>
+  <div style="width: 500px;" >
+  
   <form method="post" class="form">
     <label class="formtitle"> Find Courses </label>
     <br>
     <h2>Based on name, ID, credit</h2>
-    <input type="text" id="cid" name="cid">
-    <input class="submitbutton" type="submit" name="submit" value="View Results"  style="margin-left:40px;">
-    <br>
-    <br>
+      <label for="cid">Course ID</label>
+      <input type="text" id="cid" name="cid">
+      <br>
+      <label for="cid">Course Name</label>
+      <input type="text" id="cname" name="cname">
+      <br>
+      <label for="cid">Number of Credits</label>
+      <input type="text" id="credit" name="credit">
+      <br><br>
+      <input class="submitbutton" type="submit" name="submit" value="View Results"  style="margin-left:40px;">
+      <br><br>
   </form>
   <br>
   <a href="staffhome.php" class="gobacklink">Back to main menu</a>
@@ -22,14 +42,13 @@
 if (isset($_POST['submit'])) {
   try  {
       
-    require "session.php";
-    require "common.php";
-
-    // $connection = new PDO($dsn, $username, $password, $options);
-
+    
     $cid = $_POST['cid'];
+    $cname = $_POST['cname'];
+    $credit = $_POST['credit'];
+
     $sql = "SELECT * FROM course
-            WHERE cid like '$cid%' or cname like '%$cid%' or credits like '%$cid'";
+            WHERE cid like '$cid%' and cname like '%$cname%' and credits like '%$credit'";
 
     $statement = $connection->prepare($sql);
     $statement->bindParam(':cid', $cid, PDO::PARAM_STR);
@@ -47,7 +66,7 @@ if (isset($_POST['submit'])) {
   if ($result && $statement->rowCount() > 0) { ?>
     <h2>Results</h2>
 
-    <table class="data-table" style="display: block; overflow: scroll;height: 300px;">
+    <table class="data-table" style="display: block; overflow-y: scroll;height: 300px;">
       <thead>
         <tr>
           <th>Course ID</th>
@@ -94,4 +113,5 @@ if (isset($_POST['submit'])) {
   });
   
 </script>
+</div>
 <?php require "templates/footer.php"; ?>

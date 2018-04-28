@@ -8,6 +8,7 @@
 
 require "session.php";
 require "common.php";
+require "checkstaff.php";
 
 if (isset($_POST['submit'])) {
   try {
@@ -53,23 +54,28 @@ if (isset($_GET['sch_name'])) {
 }
 ?>
 
-<?php require "templates/header.php"; ?>
+<?php require "templates/header.php"; 
+    include "splitleft-staff.html";
+?>
+
+<div class="splitright" >
+<div style="padding-left: 20px;">
+
+<?php  include "backbuttonstaff.html"; ?>
+<h2>Edit a scholarship</h2>
+<form method="post" class="form">
+    <label class="formtitle"> Edit a Scholarship</label><br><br>
+    <?php foreach ($scholarship as $key => $value) : ?>
+      <label for="<?php echo $key; ?>"><?php echo ucfirst($key); ?></label>
+      <input class="formtextbox" type="text" name="<?php echo $key; ?>" sch_name="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'sch_name' ? 'readonly' : null); ?>><br><br>
+    <?php endforeach; ?> 
+    <input class="submitbutton" type="submit" name="submit" value="Submit"><br><br>
+</form>
+<br>
+<a href="managescholarship.php" class="gobacklink">Back to manage scholarships</a>
+</div>
 
 <?php if (isset($_POST['submit']) && $statement) : ?>
   <blockquote><?php echo escape($_POST['sch_name']); ?> successfully updated.</blockquote>
 <?php endif; ?>
-
-<div style="padding-left: 100px;">
-<h2>Edit a scholarship</h2>
-
-<form method="post">
-    <?php foreach ($scholarship as $key => $value) : ?>
-      <label for="<?php echo $key; ?>"><?php echo ucfirst($key); ?></label>
-      <input type="text" name="<?php echo $key; ?>" sch_name="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'sch_name' ? 'readonly' : null); ?>><br><br>
-    <?php endforeach; ?> 
-    <input type="submit" name="submit" value="Submit">
-</form>
-
-<a href="managescholarship.php">Back to manage scholarships</a>
-</div>
 <?php require "templates/footer.php"; ?>

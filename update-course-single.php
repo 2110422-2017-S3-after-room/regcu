@@ -7,67 +7,75 @@
  */
 
 require "session.php";
-include('checkstaff.php');
+include 'checkstaff.php';
 require "common.php";
+
+$message=" ";
 
 if (isset($_POST['submit'])) {
   try {
-    // $connection = new PDO($dsn, $username, $password, $options);
+    
+    $cid= $_GET['cid'];
+    $sql2 = "UPDATE course 
+            SET 
+              cname = '".$_POST['cname']."' , 
+              credits = ".$_POST['credits'].", 
+              cnameshort= '".$_POST['cnameshort']."'
+            WHERE cid =".$cid.";";
+  $result2 = mysqli_query($db,$sql2);
+  $message="updated successfully";
 
-    $user =[
-      "cid"        => $_POST['cid'],
-      "cname" => $_POST['cname'],
-      "credits"  => $_POST['credits']
-    ];
-
-    $sql = "UPDATE course 
-            SET cid = :cid, 
-              cname = :cname, 
-              credits = :credits
-            WHERE cid = :cid";
-  
-  $statement = $connection->prepare($sql);
-  $statement->execute($user);
   } catch(PDOException $error) {
-      echo $sql . "<br>" . $error->getMessage();
+      echo "cannot update";
+      echo $sql2 . "<br>" . $error->getMessage();
   }
 }
   
 if (isset($_GET['cid'])) {
-  try {
-    // $connection = new PDO($dsn, $username, $password, $options);
-    $cid = $_GET['cid'];
+ 
+  $cid = $_GET['cid'];
 
-    $sql = "SELECT * FROM course WHERE cid = :cid";
-    $statement = $connection->prepare($sql);
-    $statement->bindValue(':cid', $cid);
-    $statement->execute();
-    
-    $user = $statement->fetch(PDO::FETCH_ASSOC);
-  } catch(PDOException $error) {
-      echo $sql . "<br>" . $error->getMessage();
+  $sql = "SELECT cname, cnameshort, credits FROM course WHERE cid ='".$cid."';";
+  $result = mysqli_query($db,$sql);
+  if(!$result){
+    echo "cannot fetch";
   }
+  $row =  mysqli_fetch_array($result); 
+?>
+  <?php 
+     require "templates/header.php";
+    include 'splitleft-staff.html'; ?>
+  
+  <div class="splitright" style="padding-left: 20px;">
+    <?php include 'backbuttonstaff.html'; ?>
+    <form method="post" class="form" style="width:400px;padding-bottom: 20px;">
+        <label class="formtitle">Edit a course</label> <br><br>
+          <label for="cid"> Course ID </label>
+          <input disabled class="formtextbox" type="text" name="cid" value= "<?= $cid ?>"><br>
+          <label for="cname"> Course Name </label>
+          <input  class="formtextbox" type="text" name="cname"  value="<?= $row['cname'] ?>"><br>
+          <label for="cnameshort"> Abbrev. Name </label>
+          <input class="formtextbox" type="text" name="cnameshort"  value="<?= $row['cnameshort'] ?>"><br>
+          <label for="credits"> Credits </label>
+          <input  class="formtextbox" type="text" name="credits"  value="<?= $row['credits'] ?>"><br>
+
+        <br>
+        <input class="submitbutton" type="submit" name="submit" value="Submit"> <br>
+    </form>
+    <br>
+    <a href="managecourse.php" class="gobacklink">Back to manage courses</a>
+    </div>
+
+ <?php require "templates/footer.php"; ?>
+<?php
+
 } else {
     echo "Something went wrong!";
     exit;
 }
-?>
-<?php require "templates/header.php"; ?>
-<?php if (isset($_POST['submit']) && $statement) : ?>
-	<blockquote><?php echo escape($_POST['cname']); ?> successfully updated.</blockquote>
-<?php endif; ?>
-<div style="padding-left: 100px;">
-<h2>Edit a user</h2>
 
-<form method="post">
-    <?php foreach ($user as $key => $value) : ?>
-      <label for="<?php echo $key; ?>"><?php echo ucfirst($key); ?></label>
-	    <input type="text" name="<?php echo $key; ?>" cid="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'cid' ? 'readonly' : null); ?>><br><br>
-    <?php endforeach; ?> 
-    <br>
-    <input type="submit" name="submit" value="Submit">
-</form>
-<br>
-<a href="managecourse.php">Back to manage courses</a>
-</div>
-<?php require "templates/footer.php"; ?>
+?>
+<?php 
+      if($result){  ?>
+        <p style="color: green;"> <?= $message ?> </p>
+<?php  } ?>
