@@ -74,13 +74,13 @@ include 'splitleft.html'; ?>
 				<td> </td> 
 				<td> </td>
 				<td> GPA </td>
-				<td>'. ($row3['gpa'] === null ? "-": $row3['gpa'])   .'</td></tr></tbody><br>'; 
+				<td>'. ($row3['gpa'] === null ? "-": round($row3['gpa'],2))   .'</td></tr></tbody><br>'; 
 	}
 	$query4 = 'SELECT sum(E.grade*C.credits)/sum(C.credits) as gpax FROM enroll E,course C WHERE E.cid = C.cid and E.sid = '.$user_check ." and E.grade is not null ;";//  
 	$result4 = mysqli_query($db,$query4);
 	$row4 = mysqli_fetch_array($result4);
 	echo '<tr class="gpaxrow"> <td> </td> <td/><td/><td>GPAX</td>
-			<td>'.($row4['gpax']===null? '-':$row4['gpax']);
+			<td>'.($row4['gpax']===null? '-':round($row4['gpax'],2));
 	
 ?>
 </tbody>

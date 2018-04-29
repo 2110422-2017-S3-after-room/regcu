@@ -37,8 +37,10 @@
     <!-- เพิ่ม ลด ถอน -->
      <button class="button white" name = "Withdraw" onclick="location.href='WithdrawCourse.php'"> Withdraw Course <div class="button__horizontal"></div><div class="button__vertical" ></div></button>  
 
-<!-- ดูประวัติทุนที่ได้ -->
+<!-- ดูทุนทั้งหมด -->
      <button class="button pink" name = "view scholarship" onclick = "location.href = 'ViewSch.php'"> View Scholarship <div class="button__horizontal"></div><div class="button__vertical"></div></button>
+<!-- ดูประวัติทุนที่ได้ -->
+     <button class="button pink" name = "view scholarship" onclick = "location.href = 'ViewSchApp.php'"> View Scholarship Application <div class="button__horizontal"></div><div class="button__vertical"></div></button>
 
 <!-- ตรวจสอบเงื่อนไขสมัครทุน -->
      <button class="button pink" name = "apply scholarship" onclick = "location.href = 'ApplySch.php'"> Check Scholarship Qualification <div class="button__horizontal"></div><div class="button__vertical"></div></button>

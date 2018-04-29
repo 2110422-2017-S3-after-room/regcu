@@ -2,7 +2,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">  
   <head>  
-    <title>Enrolled Course Info</title>  
+    <title>Transcript</title>  
     <meta http-equiv="content-type"  
         content="text/html; charset=utf-8"/> 
    <link rel="stylesheet" href="tablestyle.css">
@@ -140,9 +140,8 @@
 	echo '<tr style="height:3px;"></tr><tr class = "gparow">
 			<td> </td>
 			<td> </td> 
-			
 			<td style="text-align:center;"> GPA </td>
-			<td style="text-align:center;">'. ($row3['gpa'] === null ? "-": $row3['gpa'])   .'</td>
+			<td style="text-align:center;">'. ($row3['gpa'] === null ? "-": round($row3['gpa'],2))   .'</td>
 			<td></td>
 			</tr></tbody>'; 
 	}
@@ -154,7 +153,7 @@
 		<td style="width="300px;"> &nbsp; </td> 
 		<td style="width="300px;> &nbsp;</td>
 		<td><strong>GPAX</strong></td>
-			<td><strong>'.($row4['gpax']===null? '-':$row4['gpax']) .'</strong><td>
+			<td><strong>'.($row4['gpax']===null? '-': round($row4['gpax'],2)) .'</strong><td>
 			</tr></tbody>';
 
 	

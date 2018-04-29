@@ -16,6 +16,7 @@
 
    
    	mysqli_set_charset($db, "utf8");
-    
+    $thissem = 2 ;
+    $thisyear=2017;
 	
 ?>

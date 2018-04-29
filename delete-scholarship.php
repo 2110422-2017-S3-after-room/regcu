@@ -11,9 +11,10 @@ require "checkstaff.php";
 if (isset($_GET["cc"])) {
   try {
     $sch_name = $_GET["cc"];
+    $sch_year = $_GET["ccc"];
     // // $connection = new PDO($dsn, $username, $password, $options);
     // $connection->query("use regcu");
-    $sql = "DELETE FROM scholarship WHERE sch_name = $sch_name";
+    $sql = "DELETE FROM scholarship WHERE sch_name = '".$sch_name."' and sch_year = ".$sch_year." ;";
 
     $result = mysqli_query($db, $sql);
     if(!$result){
@@ -29,14 +30,20 @@ if (isset($_GET["cc"])) {
 if (isset($_GET["sch_name"])) {
   try {
     $sch_name = $_GET["sch_name"];
-    $connection = new PDO($dsn, $username, $password, $options);
-    $connection->query("use regcu");
-    $sql = "SELECT * FROM scholarship WHERE sch_name = $sch_name";
+    $sch_year = $_GET["sch_year"];
+    // $connection = new PDO($dsn, $username, $password, $options);
+    // $connection->query("use regcu");
+    $sql = "SELECT * FROM scholarship WHERE sch_name = '".$sch_name."' and sch_year = ".$sch_year.";";
 
-    $statement = $connection->prepare($sql);
-    $statement->execute();
-
-    $result = $statement->fetchAll();
+    $result = mysqli_query($db,$sql);
+    if(!$result){
+      echo "Can't fetch scholarship";
+      exit();
+    }
+    $row = mysqli_fetch_array($result);
+    // $statement = $connection->prepare($sql);
+    // $statement->execute();
+    // $result = $statement->fetchAll();
   } catch(PDOException $error) {
     echo $sql . "<br>" . $error->getMessage();
   }
@@ -51,16 +58,18 @@ if (isset($_GET["cc"])) {
   include "splitleft-staff.html" ?>
   <div class="splitright">
     <?php include "backbuttonstaff.html"; ?>
-<div style="padding-left: 100px;">
+<div style="padding-left: 20px;">
 <h2>Delete Scholarship</h2>
 
-<table class="data-table" style="display: block; height: 100px;">
+<table class="data-table" style="width: 800px;" >
   <thead>
     <tr>
-      <th>Scholarship's year</th>
+      <th>Year</th>
       <th>Name</th>
       <th>Owner</th>
       <th>Amount</th>
+      <th>Type</th>
+      <th>Full Name</th>
     </tr>
   </thead>
   <tbody>
@@ -70,16 +79,20 @@ if (isset($_GET["cc"])) {
       <td><?php echo escape($row["sch_name"]); ?></td>
       <td><?php echo escape($row["sch_owner"]); ?></td>
       <td><?php echo escape($row["sch_amount"]); ?></td>
+      <td><?php echo escape($row["sch_type"]); ?></td>
+      <td><?php echo escape($row["sch_full_name"]); ?></td>
     </tr>
   <?php endforeach; ?>
   </tbody>
 </table>
+<div style="display: block">
 <h2>Are you sure you want to permanently delete this scholarship?</h2>
 <form>
-  <a href="delete-scholarship.php?cc=<?php echo escape($row["sch_name"]); ?>" class="gobacklink">YES</a> <-->
+  <a href="delete-scholarship.php?cc=<?= $row['sch_name']?>&ccc=<?= $row['sch_year'] ?>" class="gobacklink">YES</a> <-->
   <a href="managescholarship.php" class="gobacklink">NO</a>
 </form>
 <br>
+</div>
 
 <a href="managescholarship.php" class="gobacklink">Back to manage scholarship</a>
 </div></div>

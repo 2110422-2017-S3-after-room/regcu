@@ -84,9 +84,9 @@ if (isset($_POST['submit'])) {
           <td style="font-family:Pridi;"> <?= escape($row["sch_type"]) ?> </td>
           <td style="font-family:Pridi;">  <?= escape($row["sch_full_name"]) ?> </td>
           
-          <td ><a href="update-scholarship-single.php?sch_name=<?php echo escape($row["sch_name"]); ?>">Edit</a></td>
+          <td ><a href="update-scholarship-single.php?sch_name='<?php echo escape($row["sch_name"]); ?>'">Edit</a></td>
           
-          <td><a href="delete-scholarship.php?sch_name=<?php echo escape($row["sch_name"]); ?>">Delete</a></td>
+          <td><a href="delete-scholarship.php?sch_name=<?php echo escape($row["sch_name"]); ?>&sch_year=<?= $row["sch_year"]?>">Delete</a></td>
         </tr>
       <?php endforeach; ?>
       </tbody>
