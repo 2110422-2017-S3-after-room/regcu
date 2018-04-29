@@ -30,11 +30,17 @@ if (isset($_GET["cc"])) {
 if (isset($_GET["sch_name"])) {
   try {
     $sch_name = $_GET["sch_name"];
+<<<<<<< HEAD
     $sch_year = $_GET["sch_year"];
     // $connection = new PDO($dsn, $username, $password, $options);
     // $connection->query("use regcu");
     $sql = "SELECT * FROM scholarship WHERE sch_name = '".$sch_name."' and sch_year = ".$sch_year.";";
 
+=======
+    // $connection = new PDO($dsn, $username, $password, $options);
+    // $connection->query("use regcu");
+    $sql = "SELECT * FROM scholarship WHERE sch_name = '(.$sch_name.)'";
+>>>>>>> origin/master
     $result = mysqli_query($db,$sql);
     if(!$result){
       echo "Can't fetch scholarship";
@@ -88,7 +94,11 @@ if (isset($_GET["cc"])) {
 <div style="display: block">
 <h2>Are you sure you want to permanently delete this scholarship?</h2>
 <form>
+<<<<<<< HEAD
   <a href="delete-scholarship.php?cc=<?= $row['sch_name']?>&ccc=<?= $row['sch_year'] ?>" class="gobacklink">YES</a> <-->
+=======
+  <a href="delete-scholarship.php?cc=$row['sch_name']" class="gobacklink">YES</a> <-->
+>>>>>>> origin/master
   <a href="managescholarship.php" class="gobacklink">NO</a>
 </form>
 <br>
