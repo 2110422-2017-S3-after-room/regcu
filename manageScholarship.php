@@ -36,12 +36,16 @@ if (isset($_POST['submit'])) {
             or sch_year like '%$sch_name%' 
             or sch_owner like '%$sch_name%'
             ";
-
-    $statement = $connection->prepare($sql);
-    $statement->bindParam(':sch_name', $sch_name, PDO::PARAM_STR);
-    $statement->execute();
-
-    $result = $statement->fetchAll();
+   
+    // $statement = $connection->prepare($sql);
+    // $statement->bindParam(':sch_name', $sch_name, PDO::PARAM_STR);
+    // $statement->execute();
+    $result =  mysqli_query($db,$sql);
+    if(!$result){
+      echo "cannot fetch table";
+    }
+    $count = mysqli_num_rows($result);
+    //$result = $statement->fetchAll();
   } catch(PDOException $error) {
       echo $sql . "<br>" . $error->getMessage();
   }
@@ -50,16 +54,20 @@ if (isset($_POST['submit'])) {
         
 <?php  
 if (isset($_POST['submit'])) {
-  if ($result && $statement->rowCount() > 0) { ?>
+  // if ($result && $statement->rowCount() > 0) { 
+  if($result && $count > 0){ ?>
     <h2>Results</h2>
 
-    <table class="data-table" style="display: block; overflow: scroll;height: 300px;">
+    <table class="data-table" style="width:1000px; display: block; overflow: scroll;height: 300px;">
       <thead>
         <tr>
-          <th>Scholarship's year</th>
+          <th>Year</th>
           <th>Name</th>
           <th>Owner</th>
           <th>Amount</th>
+          <th>Type</th>
+          <th>Full Name</th>
+ 
           <th>Edit </th>
           <th> Delete</th>
         </tr>
@@ -67,11 +75,16 @@ if (isset($_POST['submit'])) {
       <tbody>
       <?php foreach ($result as $row) : ?>
         <tr>
-          <td><?php echo escape($row["sch_year"]); ?></td>
-          <td><?php echo escape($row["sch_name"]); ?></td>
-          <td><?php echo escape($row["sch_owner"]); ?></td>
+          <td style="font-family:Pridi;"> <?php echo escape($row["sch_year"]); ?></td>
+          <td style= "font-family:Pridi;" > <?php echo escape($row["sch_name"]); ?></td>
+          <td style="font-family:Pridi;"><?php echo escape($row["sch_owner"]); ?></td>
+          
           <td><?php echo escape($row["sch_amount"]); ?></td>
-          <td><a href="update-scholarship-single.php?sch_name=<?php echo escape($row["sch_name"]); ?>">Edit</a></td>
+
+          <td style="font-family:Pridi;"> <?= escape($row["sch_type"]) ?> </td>
+          <td style="font-family:Pridi;">  <?= escape($row["sch_full_name"]) ?> </td>
+          
+          <td ><a href="update-scholarship-single.php?sch_name=<?php echo escape($row["sch_name"]); ?>">Edit</a></td>
           
           <td><a href="delete-scholarship.php?sch_name=<?php echo escape($row["sch_name"]); ?>">Delete</a></td>
         </tr>

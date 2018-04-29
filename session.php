@@ -13,5 +13,9 @@
 
     $connection = new PDO($dsn, $username, $password, $options);
     $connection->query("use regcu");
+
+   
+   	mysqli_set_charset($db, "utf8");
     
+	
 ?>
