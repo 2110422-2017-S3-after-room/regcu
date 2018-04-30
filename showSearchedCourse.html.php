@@ -1,9 +1,10 @@
 
+<h2> Search Result </h2>
+  <div style="padding-left: 30px;">
 
-  
-    <table class="data-table">
-    <caption class="title">  <h1>Search Result</h1>  </caption>
-    <thead style="display:inline-block;">
+    <table class="data-table" style="display:inline-block; overflow:auto; max-height: 350px; min-width:600px; width:650px; margin-left:20px; ">
+    
+    <thead >
       
       <tr>
         <th> # </th>
@@ -12,9 +13,10 @@
         <th>COURSE NAME</th>
         <th>CREDITS</th>
         <th>TEACHER NAME</th>
+       
       </tr>
     </thead>
-    <tbody style="display:block; overflow:auto;max-height: 250px; ">
+    <tbody  >
     <?php
       $no   = 1;
       $total  = 0;
@@ -27,7 +29,7 @@
           <td style="text-align:left;">' .$row['cname'].   '</td>
           <td>' .$row['credits']. '</td>
           <td>' .$row['tname'].   '</td>
-          <td> <a href="enroll.php?cid=<?= $row['.'cid'.']?""> Enroll </a></td>
+  
            
         </tr>';
       $no++;
@@ -37,5 +39,8 @@
       <tr/>
     </tfoot> 
   </table>
+</div>
 
-
+</div>
+</body>
+</html>

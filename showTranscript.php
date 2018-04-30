@@ -41,7 +41,7 @@ include 'splitleft.html'; ?>
 			include 'error.html.php';
 			exit();
 		}
-		echo '<table class="data-table"  style="min-width=700px;">'; 
+		echo '<table class="data-table"  style="max-width=700px; width:700px;">'; 
 		echo '<caption class="title">  <h1>Year  : ' . $row['yearr'] . '&#9; &emsp;Sem : '.$row['sem'].' </h1>  </caption>';
 		echo'  
 			<thead>
@@ -53,7 +53,7 @@ include 'splitleft.html'; ?>
 			        <th>GRADE</th>
 			    </tr>
 	    	</thead>
-	  	  	<tbody>';
+	  	  	<tbody style="max-width=700px; width:700px;">';
 	  
   		while ($row2 = mysqli_fetch_array($result2)){
   			echo'<tr>

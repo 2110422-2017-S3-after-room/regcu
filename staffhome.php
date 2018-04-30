@@ -22,13 +22,13 @@
       <button class="button pink" name = "ManageCourse" onclick="location.href='manageCourse.php'" > Manage Course <div class="button__horizontal"></div><div class="button__vertical"></div></button> 
 
       <!-- add/edit/remove teacher -->
-      <button class="button pink" name = "ManageTeacher" onclick="location.href='manageTeacher.php'" > Manage Teacher <div class="button__horizontal"></div><div class="button__vertical"></div></button> 
+      <button class="button white" name = "ManageTeacher" onclick="location.href='manageTeacher.php'" > Manage Teacher <div class="button__horizontal"></div><div class="button__vertical"></div></button> 
  
       <!-- add/edit/remove a student, show students info -->
-      <button class="button white" name = "Manage Student" onclick="location.href='manageStudent.php'"> Manage Student  <div class="button__horizontal"></div><div class="button__vertical"></div></button>
+      <button class="button pink" name = "Manage Student" onclick="location.href='manageStudent.php'"> Manage Student  <div class="button__horizontal"></div><div class="button__vertical"></div></button>
       
       
-      <button class="button pink" name = "ManageScholarship" onclick="location.href='manageScholarship.php'"> Manage Scholarship <div class="button__horizontal"></div><div class="button__vertical"></div></button>
+      <button class="button white" name = "ManageScholarship" onclick="location.href='manageScholarship.php'"> Manage Scholarship <div class="button__horizontal"></div><div class="button__vertical"></div></button>
 
        <button class="button pink" name = "ManageScholarshipApp" onclick="location.href='manageScholarshipApplication.php'"> Manage Scholarship Application <div class="button__horizontal"></div><div class="button__vertical"></div></button>
 

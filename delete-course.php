@@ -50,7 +50,7 @@ if (isset($_GET["cc"])) {
 <div style="padding-left: 100px;">
 <h2>Delete Course</h2>
 
-<table class="data-table" style="display: block; height: 100px;">
+<table class="data-table" style="display: inline-block; max-height: 100px; min-width: 0px;">
   <thead>
     <tr>
       <th>Course ID</th>
@@ -75,6 +75,6 @@ if (isset($_GET["cc"])) {
 </form>
 <br>
 
-<a href="managecourse.php">Back to manage course</a>
+<a class="gobacklink" href="managecourse.php">Back to manage course</a>
 </div>
 <?php require "templates/footer.php"; ?>

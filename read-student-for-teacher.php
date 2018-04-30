@@ -12,9 +12,10 @@ if (isset($_POST['submit'])) {
 
     $sid = $_POST['sid'];
     $sql = "SELECT * FROM regcu.student
-            WHERE (sid like '%$sid%' 
+            WHERE (sid like '$sid%' 
             or fname like '$sid%'
-            or lname like '$sid%')
+            or lname like '$sid%') 
+            and advisor_id = ".$user_check." 
             ";
 
     $statement = $connection->prepare($sql);
@@ -53,7 +54,7 @@ if (isset($_POST['submit'])) {
  ?>   
     <h2>Results</h2>
 
-    <table class="data-table" style="display: block; overflow-y: auto; width:700px; overflow-x:hidden; height: 300px;">
+    <table class="data-table" style="display: block; overflow-y: auto; width:700px; overflow-x:hidden; max-height: 300px;">
       <thead>
         <tr>
           <th>Student's ID</th>

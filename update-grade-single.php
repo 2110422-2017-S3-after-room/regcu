@@ -67,7 +67,7 @@ if (isset($_GET['cid'])) {
 
 <?php include 'backbutton.html'; ?>
 <h1>Update Grade</h1>
-        <form method="post">
+        <form method="post" style="width:700px">
 <table class="data-table">
     <thead class="data-table-thead" style=" overflow-y: auto; width:700px; overflow-x:hidden; height: 300px;">
         <tr>
@@ -100,9 +100,11 @@ if (isset($_GET['cid'])) {
         </tr>
         </tbody>
     </table>
-    <br> 
-    <a class="gobacklink" style="display: inline-block; background-color:salmon;" href="update-grade.php">Back to update grade</a>
-     <input style="display: inline-block;" type="submit" name="submit" class="submitbutton" value="Submit">
+  <br><br><br>
+   <input style="float: right; margin-right:200px;" type="submit" name="submit" class="submitbutton" value="Submit" >   <br><br>
+    <a class="gobacklink" style="" href="update-grade.php">Back to update grade</a><br>
+     
+    
     </form>
     
 <br><br>

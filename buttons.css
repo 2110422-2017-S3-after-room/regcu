@@ -11,13 +11,12 @@
 }
 
 .rejectbutton{
-	width : 100px;
-	height: 40px;
+	padding:20px;
 	background-color : #da5187;
 	color: white;
 	border-width: 0px;
 	font-family: 'Pridi',serif;
-		font-size: 20px;
+	font-size: 20px;
 }
 
 .rejectbutton:hover {

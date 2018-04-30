@@ -30,7 +30,7 @@ try {
 
 <h1>Update Grade</h1>
 
-<table class="data-table" style="display: block; overflow-y: auto; width:700px; overflow-x:hidden; height: 300px;">
+<table class="data-table" style="display: block; overflow-y: auto; max-width:635px; overflow-x:hidden; max-height: 300px; margin:20px;">
     <thead>
         <tr>
             <th>Course's ID</th>
@@ -55,6 +55,6 @@ try {
     </tbody>
 </table>
 <br>
-<a class="gobacklinkbig" href="teacherhome.php">Back to home</a>
+
 </div></span>
 <?php require "templates/footer.php"; ?>

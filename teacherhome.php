@@ -21,7 +21,7 @@
        <button class="button pink" name = "update grade" onclick = "location.href = 'update-grade.php'"> Update Grade <div class="button__horizontal"></div><div class="button__vertical"></div></button>
 
 <!-- view info of students under advise -->
-       <button class="button pink" name = "update grade" onclick = "location.href = 'read-student-for-teacher.php'"> Show Students Under Advise <div class="button__horizontal"></div><div class="button__vertical"></div></button>
+       <button class="button white" name = "update grade" onclick = "location.href = 'read-student-for-teacher.php'"> Show Students Under Advise <div class="button__horizontal"></div><div class="button__vertical"></div></button>
        <!-- clicking on the student name should show his/her detailed info. -->
 
 

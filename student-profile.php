@@ -76,7 +76,7 @@ include "splitleft.html"; ?>
             
       
         <?php foreach ($result2 as $row) : ?>
-            <table class="data-table" style="display: inline-block; min-width: 250px; width: 270px; margin: 20px">
+            <table class="data-table" style="display: inline-block; min-width: 250px; max-width: 800px; margin: 20px; width: 750px;">
 
             <tbody>
           <tr>  <th style="background-color: #5b66b8; color:white">Name</th><td><?php echo escape($row["name"]); ?></td></tr>
@@ -85,8 +85,8 @@ include "splitleft.html"; ?>
           <tr>  <th style="background-color: #5b66b8; color:white">Occupation</th><td><?php echo escape($row["occupation"]); ?></td></tr>
           <tr>  <th style="background-color: #5b66b8; color:white">Yearly income</th><td><?php echo escape($row["yearly_income"]); ?></td></tr>
            <tr> <th style="background-color: #5b66b8; color:white">Relationship</th><td><?php echo escape($row["relationship"]); ?></td></tr>
-          <tr>   <th style="background-color: #5b66b8; color:white">edit</th><td><a href="update-relative.php?nat_id=<?php echo escape($user_check); ?>"><i class="fas fa-pencil-alt"></i></a></td>
-          </tr>
+         <!--  <tr>   <th style="background-color: #5b66b8; color:white">edit</th><td><a href="update-relative.php?nat_id=<?php echo escape($user_check); ?>"><i class="fas fa-pencil-alt"></i></a></td>
+          </tr> -->
           </tbody>
       </table>
         <?php endforeach; ?>

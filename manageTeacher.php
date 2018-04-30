@@ -42,18 +42,17 @@ if (isset($_POST['submit'])) {
     <br>
     <h2>Based on ID, name, department's ID</h2>
     <label> Teacher ID</label>
-    <input type="text" id="tid" name="tid" class="formtextbox">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="tid" name="tid" class="formtextbox">
     <br><label> Teacher Name</label>
-    <input type="text" id="tname" name="tname" class="formtextbox">
+    &nbsp;<input type="text" id="tname" name="tname" class="formtextbox">
     <br><label> Department ID</label>
-    <input type="text" id="dep_id" name="dep_id" class="formtextbox">
+    &nbsp;<input type="text" id="dep_id" name="dep_id" class="formtextbox">
     <br><br><input class="submitbutton" type="submit" name="submit" value="View Results"  style="margin-left:40px;">
     <br>
     <br>
   </form>
   <br>
   
-  <a href="staffhome.php" class="gobacklink">Back to main menu</a>
 
   <a href="create-teacher.php" class="gobacklink">Add new teacher</a>
   
@@ -66,7 +65,7 @@ if (isset($_POST['submit'])) {
     <h2>Results</h2>
 
     <table class="data-table" 
-    style="display: block; overflow-y:scroll; height: 300px; min-width: 300px; max-width:550px;">
+    style="display: block; overflow-y:scroll; max-height: 300px; min-width: 300px; max-width:550px;">
 
       <thead>
         <tr>

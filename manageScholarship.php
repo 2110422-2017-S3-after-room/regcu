@@ -11,6 +11,9 @@
     <br>
     <h2>Based on name, year, owner</h2>
     <input class="formtextbox" type="text" id="sch_name" name="sch_name">
+    <h2> .. and scholarship type. </h2>
+    <input class="formnumberbox" type="text" id="sch_type" name="sch_type" min=0 max=4 step=1 >
+
     <input class="submitbutton" type="submit" name="submit" value="View Results"  style="margin-left:40px;">
     <br>
     <br>
@@ -29,14 +32,17 @@ if (isset($_POST['submit'])) {
     require "common.php";
     require "checkstaff.php";
     // $connection = new PDO($dsn, $username, $password, $options);
-
+    $tt = "";
+    if($_POST['sch_type'] != null and !($_POST['sch_type'] <= 0 or $_POST['sch_type'] >5)){
+      $tt = " and sch_type = ".$_POST['sch_type'];
+    }
     $sch_name = $_POST['sch_name'];
     $sql = "SELECT * FROM scholarship
-            WHERE sch_name like '%$sch_name%' 
+            WHERE (sch_name like '%$sch_name%' 
             or sch_year like '%$sch_name%' 
-            or sch_owner like '%$sch_name%'
-            ";
-   
+            or sch_owner like '%$sch_name%')
+            ".$tt."
+            ; ";
     // $statement = $connection->prepare($sql);
     // $statement->bindParam(':sch_name', $sch_name, PDO::PARAM_STR);
     // $statement->execute();
@@ -58,7 +64,7 @@ if (isset($_POST['submit'])) {
   if($result && $count > 0){ ?>
     <h2>Results</h2>
 
-    <table class="data-table" style="width:1000px; display: block; overflow: scroll;height: 300px;">
+    <table class="data-table" style=" display: inline-block; overflow: scroll; max-height: 300px;">
       <thead>
         <tr>
           <th>Year</th>
@@ -92,7 +98,7 @@ if (isset($_POST['submit'])) {
       </tbody>
     </table>
     <?php } else { ?>
-      <blockquote>No results found for <?php echo escape($_POST['sch_name']); ?>.</blockquote>
+      <blockquote>No results found </blockquote>
     <?php } 
 } ?> 
 

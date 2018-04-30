@@ -21,20 +21,20 @@ if (isset($_POST['submit'])) {
     <label for="sch_year">Year</label>
     <input type="number" name="sch_year" id="sch_year" class="formnumberbox"><br><br>
      <label for="sch_amount">Full Name</label>
-    <input type="text" name="sch_full_name" id="sch_full_name" class="formtextbox"><br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="sch_full_name" id="sch_full_name" class="formtextbox"><br><br>
     <label for="sch_owner">Owner</label>
-    <input type="text" name="sch_owner" id="sch_owner" class="formtextbox"><br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="sch_owner" id="sch_owner" class="formtextbox"><br><br>
     <label for="sch_amount">Amount</label>
-    <input type="text" name="sch_amount" id="sch_amount" class="formtextbox"><br><br>
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="sch_amount" id="sch_amount" class="formtextbox"><br><br>
     <label for="sch_type">Type</label>
-    <select name="sch_type">
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<select name="sch_type" class="formdropdown">
       <option value="1"> 1 : ทุนอุดหนุนการศึกษา </option>
       <option value="2"> 2 : ทุนรางวัลเรียนดี </option>
       <option value="3"> 3 : ทุนสร้างชื่อเสียงและคุณประโยชน์ </option>
       <option value="4"> 4 : กยศ </option>
       <option value="5"> 5 : ทุนการศึกษาจากหน่วยงานภายนอก </option>
     </select><br><br>
-    <input type="submit" name="submit" value="Submit" class="submitbutton"><br><br>
+    <input type="submit" name="submit" value="Submit" class="submitbutton" style="float: right; margin-right: 30px;"><br><br>
   </form>
   <br>
   <a class="gobacklink" href="managescholarship.php">Back to manage scholarships</a>

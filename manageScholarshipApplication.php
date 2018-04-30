@@ -15,9 +15,9 @@
     <br>
     <h2>Based on scholarship name, year, student ID</h2>
 
-    Scholarship Name <input class="formtextbox" type="text" id="sch_name" name="sch_name"><br>
-    Scholarship Year <input class="formnumberbox" type="number" id="sch_year" name="sch_year"><br>
-    Student ID <input class="formtextbox" type="text" id="sid" name="sid"><br>
+    Scholarship Name &nbsp;&nbsp;&nbsp;<input class="formtextbox" type="text" id="sch_name" name="sch_name"><br>
+    Scholarship Year &nbsp;&nbsp;&nbsp;&nbsp;<input class="formnumberbox" type="number" id="sch_year" name="sch_year"><br>
+    Student ID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="formtextbox" type="text" id="sid" name="sid"><br>
  
     <input class="submitbutton" type="submit" name="submit" value="View Results"  style="margin-left:40px;">
     <br>

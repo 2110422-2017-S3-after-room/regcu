@@ -28,8 +28,7 @@ $query1 = 'SELECT * from excellent_academic_sch
 		from can_apply_academic_sch caas, student s, department d 
 		where caas.sch_name='".$sch['sch_name']."' 
 		and caas.sch_year ='".$sch['sch_year']."'
-		and s.dep_id = d.dep_id and d.fac_id=caas.fac_id ;"; 
-
+		and s.dep_id = d.dep_id and d.fac_id=caas.fac_id and s.sid=".$user_check.";"; 
 		$res11 = mysqli_query($db, $query11);
 		if(mysqli_num_rows($res11)==1){
 			$facok = 1;
@@ -52,12 +51,17 @@ $query1 = 'SELECT * from excellent_academic_sch
 // fetch student family income
 		$query3 = 'select sum(FMD.yearly_income) as total_income
               from family_member_detail FMD, family_member FM
-              where FM.sid = ".$user_check." and FMD.fnat_id = FM.fnat_id ;';
+              where FM.sid = "'.$user_check.'" and FMD.fnat_id = FM.fnat_id ;';
+        
 		$income = mysqli_query($db,$query3);
 		$result3 = mysqli_fetch_array($income);
 		$myIncome = $result3['total_income'];
-
-
+		
+		$myIncome = floatval($myIncome);
+		$my_conduct_score = intval($my_conduct_score);
+		$myGrade = floatval($myGrade);
+		
+echo $myIncome >= $sch['max_family_income'];
 
 // start checking all qualifications
 		if($myGrade >= $sch['min_GPA'] and

@@ -89,7 +89,7 @@ www.sa.chula.ac.th">www.studentloan.or.th </a>
 
 		<form method="post" action="">
 	<input type = 'hidden' name="schname" value= <?php echo $sch['sch_name'] ?>>
-    <input type="submit" name="applynao" value="applynao" /><br/>
+    <input type="submit" class="acceptbutton" name="applynao" value="applynao" /><br/>
 <?php	}else{ ?>
 			<p><pre>
 

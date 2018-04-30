@@ -21,9 +21,9 @@
     <br>
     <h2>Based on name, ID, credit</h2>
       <label for="cid">Course ID</label>
-      <input type="text" id="cid" name="cid">
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="cid" name="cid">
       <br>
-      <label for="cid">Course Name</label>
+      <label for="cid">Course Name</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <input type="text" id="cname" name="cname">
       <br>
       <label for="cid">Number of Credits</label>
@@ -47,9 +47,15 @@ if (isset($_POST['submit'])) {
     $cname = $_POST['cname'];
     $credit = $_POST['credit'];
 
+    $cc = "";
+    if($_POST['credit'] != null){
+      $cc = " and credits = " . $credit;
+    }  
     $sql = "SELECT * FROM course
-            WHERE cid like '$cid%' and cname like '%$cname%' and credits like '%$credit'";
-
+            WHERE cid like '$cid%' 
+            and cname like '%$cname%' "
+            .$cc." ;";
+    // echo $sql;
     $statement = $connection->prepare($sql);
     $statement->bindParam(':cid', $cid, PDO::PARAM_STR);
     $statement->execute();
@@ -66,7 +72,7 @@ if (isset($_POST['submit'])) {
   if ($result && $statement->rowCount() > 0) { ?>
     <h2>Results</h2>
 
-    <table class="data-table" style="display: block; overflow-y: scroll;height: 300px;">
+    <table class="data-table" style="display: inline-block; overflow-y: scroll;max-height: 300px;">
       <thead>
         <tr>
           <th>Course ID</th>
@@ -84,7 +90,7 @@ if (isset($_POST['submit'])) {
           <td><?php echo escape($row["cname"]); ?></td>
           <td><?php echo escape($row["credits"]); ?></td>
           <td><a class="hlink" href='read-course-single.php?cid=<?=$row["cid"]?>'> <i class="fas fa-info-circle"></i></a></td>
-          <td><a href="update-course-single.php?cid=<?php echo escape($row["cid"]); ?>"><i class="fas fa-pencil-alt"></i></a></td>
+          <td style="text-align: center;"><a href="update-course-single.php?cid=<?php echo escape($row["cid"]); ?>"><i class="fas fa-pencil-alt"></i></a></td>
           <td><a href="delete-course.php?cid=<?php echo escape($row["cid"]); ?>"><i class="fas fa-trash-alt"></i></a></td>
         </tr>
       <?php endforeach; ?>
