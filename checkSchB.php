@@ -22,7 +22,7 @@
 
 <form method="post" action="">
 	<input type = 'hidden' name="schname" value= <?php echo $sch['sch_name'] ?>>
-    <input type="submit" name="applynao" value="submit" /><br/>
+    <input type="submit" name="applynao" value=" Apply Nao " class="acceptbutton" style="width: 150px;" /><br/>
 </form>
  
 	

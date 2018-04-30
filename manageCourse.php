@@ -83,10 +83,9 @@ if (isset($_POST['submit'])) {
           <td><?php echo escape($row["cid"]); ?></td>
           <td><?php echo escape($row["cname"]); ?></td>
           <td><?php echo escape($row["credits"]); ?></td>
-          <td><a href='read-course-single.php?cid=<?=$row["cid"]?>'> View </a></td>
-          <td><a href="update-course-single.php?cid=<?php echo escape($row["cid"]); ?>">Edit</a></td>
-          
-          <td><a href="delete-course.php?cid=<?php echo escape($row["cid"]); ?>">Delete</a></td>
+          <td><a class="hlink" href='read-course-single.php?cid=<?=$row["cid"]?>'> <i class="fas fa-info-circle"></i></a></td>
+          <td><a href="update-course-single.php?cid=<?php echo escape($row["cid"]); ?>"><i class="fas fa-pencil-alt"></i></a></td>
+          <td><a href="delete-course.php?cid=<?php echo escape($row["cid"]); ?>"><i class="fas fa-trash-alt"></i></a></td>
         </tr>
       <?php endforeach; ?>
       </tbody>

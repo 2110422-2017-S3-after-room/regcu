@@ -30,6 +30,9 @@
       
       <button class="button pink" name = "ManageScholarship" onclick="location.href='manageScholarship.php'"> Manage Scholarship <div class="button__horizontal"></div><div class="button__vertical"></div></button>
 
+       <button class="button pink" name = "ManageScholarshipApp" onclick="location.href='manageScholarshipApplication.php'"> Manage Scholarship Application <div class="button__horizontal"></div><div class="button__vertical"></div></button>
+
+
    </body>
    
 </html>

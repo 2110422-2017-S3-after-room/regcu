@@ -11,16 +11,16 @@
       <h1>Enroll Course</h1>
 	   <div align = "center">
          <div class="form" style = "width:300px; border: solid 1px #333333; " align = "left">
-            <div style = "background-color:#333333; color:#FFFFFF; "><b>select course and section</b></div>
+            <b div class="formtitle"> select course and section </b>
 				
             <div style = "margin:30px">
                
                <form  name = "myForm" action = "?" method = "post" >
                   <label>course ID :</label>
-                  <input type = "number" name = "courseID" class = "box" /><br><br>
+                  <input type = "number" name = "courseID" class = "formtextbox" /><br><br>
                   <label> section  :</label>
-                  <input type = "number" name = "sectionID" class = "box" /><br/><br />
-                  <input type = "submit"  value = " Submit "/><br />
+                  <input type = "number" name = "sectionID" class = "formtextbox" /><br/><br />
+                  <input type = "submit"  value = " Submit " class="submitbutton"/><br />
                </form>
               
          </div></div></div></div>

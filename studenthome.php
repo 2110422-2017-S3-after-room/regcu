@@ -18,6 +18,7 @@
          <h2><a id="sighout" href = "logout.php">Sign Out <img src="https://home.realart.com/assets/img/icon_logout.png" width="20px"> </a></h2></header>
 
       <h1> Welcome </h1>
+       <button class="button white" name = "myprofile" onclick="location.href='student-profile.php'"> My profile  <div class="button__horizontal"></div><div class="button__vertical"></div></button>
 
 <!-- ดูผลการจ่ายค่าเทอม -->
       <button class="button pink" name = "showPaymentInfo" onclick="location.href='showInfo.php'" > Payment info <div class="button__horizontal"></div><div class="button__vertical"></div></button>

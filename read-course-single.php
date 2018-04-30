@@ -97,7 +97,7 @@ if (isset($_GET['cid'])) {
   <blockquote><?php echo escape($_POST['cname']); ?> successfully updated.</blockquote>
 <?php endif; ?>
 -->
-<div style="padding-left: 10px; width:1000px;">
+<div style="padding-left: 10px;">
 <h1>Course Info : Manage Section</h1>
 <p>
 <pre> 
@@ -105,8 +105,8 @@ if (isset($_GET['cid'])) {
   Course Name : <?= $row2['cname'] ?> &#9; 
   Credits: <?=$row2['credits']?> </pre></p>
 <form method="post" action="">
-<table class="data-table" style="display: block; overflow-y: auto; max-height: 500px;">
-  <caption> sections of course <?= $cid ?> :  </caption>
+<table class="data-table" style="display: block; overflow-y: auto; width:700px; max-height: 500px;">
+  <caption style="background: none"> sections of course <?= $cid ?> :  </caption>
   <thead> 
     <th> section id</th>
     <th> year</th>
@@ -143,7 +143,7 @@ if (isset($_GET['cid'])) {
       </td>
 
       <td><?php echo escape($row["tname"]);?> </td>
-        <td><a href="delete-section.php?cid=<?= $cid?>&sec_id=<?= $sec ?>&year=<?= $year ?>&sem=<?= $sem?>">Delete</a></td>
+        <td><a href="delete-section.php?cid=<?= $cid?>&sec_id=<?= $sec ?>&year=<?= $year ?>&sem=<?= $sem?>"><i class="fas fa-trash-alt"></i></a></td>
         <!-- <td><a href="delete-section.php?cid=<?= $row["cid"] ?>?sec_id=<?php echo escape($row["sec_id"]); ?>?year=<?php echo escape($row["year"]); ?>?sem=<?php echo escape($row["sem"]); ?>">Delete</a></td> -->
    </tr> 
     <?php endforeach; ?>

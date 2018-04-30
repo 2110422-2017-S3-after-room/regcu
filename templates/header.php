@@ -12,6 +12,8 @@
 	<link rel="stylesheet" href="tablee.css">
 	<link rel="stylesheet" href="form.css">
 	<link rel="stylesheet" href="formm.css">
+	<link rel="stylesheet" href="buttons.css">
+	<link rel="stylesheet" href="hyperlink.css" >
 	<link rel="stylesheet" href="gobacklink.css" >
 	<link rel="stylesheet" href="sidebar.css" >
 	<link rel="stylesheet" href="backkkk.css" >

@@ -17,7 +17,9 @@ if (isset($_POST['submit'])) {
       "sch_name" => $_POST['sch_name'],
       "sch_year" => $_POST['sch_year'],
       "sch_owner"  => $_POST['sch_owner'],
-      "sch_amount"  => $_POST['sch_amount']
+      "sch_amount"  => $_POST['sch_amount'],
+      "sch_full_name"  => $_POST['sch_full_name'],
+      "sch_type"  => $_POST['sch_type']
     ];
     
     
@@ -25,8 +27,10 @@ if (isset($_POST['submit'])) {
             SET sch_name = :sch_name, 
             sch_year = :sch_year, 
             sch_owner = :sch_owner,
-            sch_amount = :sch_amount
-            WHERE sch_name = :sch_name";
+            sch_amount = :sch_amount,
+            sch_full_name = :sch_full_name,
+            sch_type = :sch_type
+            WHERE sch_name = :sch_name and sch_year = :sch_year";
   
   $statement = $connection->prepare($sql);
   $statement->execute($scholarship);
@@ -49,6 +53,7 @@ if (isset($_GET['sch_name'])) {
       echo $sql . "<br>" . $error->getMessage();
   }
 } else {
+    echo "fetch failed : ";
     echo "Something went wrong!";
     exit;
 }
@@ -67,8 +72,14 @@ if (isset($_GET['sch_name'])) {
     <label class="formtitle"> Edit a Scholarship</label><br><br>
     <?php foreach ($scholarship as $key => $value) : ?>
       <label for="<?php echo $key; ?>"><?php echo ucfirst($key); ?></label>
-      <input class="formtextbox" type="text" name="<?php echo $key; ?>" sch_name="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'sch_name' ? 'readonly' : null); ?>><br><br>
-    <?php endforeach; ?> 
+      <?php
+      if($key === 'sch_name' or $key === 'sch_year'){ ?>
+          <input class="formtextbox" type="hidden" name="<?php echo $key; ?>" sch_name="<?php echo $key; ?>" value="<?php echo escape($value); ?>" readonly >  :  <?= $value ?>    <br><br>
+
+<?php } else { ?>
+      <input class="formtextbox" type="text" name="<?php echo $key; ?>" sch_name="<?php echo $key; ?>" value="<?php echo escape($value); ?>"><br><br>
+    
+    <?php } endforeach; ?> 
     <input class="submitbutton" type="submit" name="submit" value="Submit"><br><br>
 </form>
 <br>

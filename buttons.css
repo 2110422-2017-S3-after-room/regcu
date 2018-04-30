@@ -1,0 +1,30 @@
+.acceptbutton{
+	padding:20px;
+	background-color : #51daa4;
+	color: white;
+	border-width: 0px;
+	font-family: 'Pridi',serif;
+	font-size: 20px;
+}
+.acceptbutton:hover {
+    background-color: #90e7c5;
+}
+
+.rejectbutton{
+	width : 100px;
+	height: 40px;
+	background-color : #da5187;
+	color: white;
+	border-width: 0px;
+	font-family: 'Pridi',serif;
+		font-size: 20px;
+}
+
+.rejectbutton:hover {
+    background-color: #e892b4;
+}
+
+.acceptbutton, .rejectbutton {
+	margin: 20px;
+	margin-top: 0px;
+}

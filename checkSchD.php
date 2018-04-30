@@ -57,7 +57,7 @@ www.sa.chula.ac.th">www.studentloan.or.th </a>
 			</pre></p>
 		<form method="post" action="">
 		<input type = 'hidden' name="schname" value= <?php echo $sch['sch_name'] ?>>
-    	<input type="submit" name="applynao" value="applynao" /><br/>
+    	 <input type="submit" name="applynao" value=" Apply Nao " class="acceptbutton" style="width: 150px;" /><br/><br/>
 <?php
 	}else if ($subtype==2){
 		// fetch faculty that can apply

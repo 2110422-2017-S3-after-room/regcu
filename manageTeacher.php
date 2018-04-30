@@ -83,9 +83,9 @@ if (isset($_POST['submit'])) {
           <td><?php echo escape($row["tid"]); ?></td>
           <td><?php echo escape($row["tname"]); ?></td>
           <td><?php echo escape($row["dep_id"]); ?></td>
-          <td><a href="update-teacher-single.php?tid=<?php echo escape($row["tid"]); ?>">Edit</a></td>
+          <td><a href="update-teacher-single.php?tid=<?php echo escape($row["tid"]); ?>"><i class="fas fa-pencil-alt"></i></a></td>
           
-          <td><a href="delete-teacher.php?tid=<?php echo escape($row["tid"]); ?>">Delete</a></td>
+          <td><a href="delete-teacher.php?tid=<?php echo escape($row["tid"]); ?>"><i class="fas fa-trash-alt"></i></a></td>
         </tr>
       <?php endforeach; ?>
       </tbody>

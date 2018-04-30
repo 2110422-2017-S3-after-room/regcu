@@ -12,7 +12,7 @@
    $username = "root";
    $password = "root";
    $dbname = "regcu";
-   $dsn = "mysql:host = $host; dbname = $dbname;";
+   $dsn = "mysql:host = $host; dbname = $dbname; charset=utf8";
    $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
    
 ?>

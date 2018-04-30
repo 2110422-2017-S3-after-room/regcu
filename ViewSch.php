@@ -20,6 +20,7 @@
     Year <input type="number" name="sch_year" id="sch_year" class="formnumberbox" max=2018 min=2000><br>
     Type 
     <select class="formdropdown" name="sch_type">
+      <option value="0"> ทั้งหมด </option>
       <option value="1"> 1 : ทุนอุดหนุนการศึกษา </option>
       <option value="2"> 2 : ทุนรางวัลเรียนดี </option>
       <option value="3"> 3 : ทุนสร้างชื่อเสียงและคุณประโยชน์ </option>
@@ -54,15 +55,17 @@ if (isset($_POST['submit'])) {
     //         and sch_owner like '%".$_POST['sch_owner']."%'
     //         and sch_type =".$_POST['sch_type']."";
     $check_year = "";
-    if(!is_null($_POST['sch_year'])){
+    if($_POST['sch_year'] != null){
       $check_year = "and sch_year = ".$_POST['sch_year'];
+    }
+    $check_type="";
+    if($_POST['sch_type'] > 0){
+       $check_type = "and sch_type = ".$_POST['sch_type'];
     }
     $sql = "SELECT * FROM scholarship WHERE 
   (sch_name like '%".$_POST['sch_name']."%' or sch_full_name like '%".$_POST['sch_name']."%')
-  and sch_owner like '%".$_POST['sch_owner']."%' 
-  and sch_type = ".$_POST['sch_type']."  
-  "  .$check_year.";" ;
-    
+  and sch_owner like '%".$_POST['sch_owner']."%' ".$check_type." ".$check_year.";" ;
+    // echo $sql;
     $result = mysqli_query($db,$sql);
     if(!$result){
       echo "cannot fetch scholarship";
