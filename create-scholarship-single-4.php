@@ -37,11 +37,7 @@
   <form method="post" class="form">
     <input type='hidden' name='sch_name' value='<?php echo "$sch_name";?>'/> 
     <input type='hidden' name='sch_year' value='<?php echo "$sch_year";?>'/> 
-<<<<<<< HEAD
-    <label class="formtitle">specific info</label><br><br>
-=======
     <label class="formtitle">Add additional specific</label><br><br>
->>>>>>> origin/master
     <label for="min_cscore">Minimum Conduct Score</label>
     <input type="number" name="min_cscore" id="min_cscore" class="formtextbox"><br><br>
     <label for="min_gpa">Minimum GPA</label>
