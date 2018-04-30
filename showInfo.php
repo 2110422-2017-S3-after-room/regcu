@@ -7,7 +7,7 @@
 
 $query = 'select S.sid, SG.fee_amount 
 from student S, student_group SG
-where SG.group_id = S.group_id and S.enroll_year = SG.enroll_year and S.sid = "'. $user_check .'";';
+where SG.sem=1 and SG.group_id = S.group_id and S.enroll_year = SG.enroll_year and S.sid = "'. $user_check .'";';
 
 $query2 = 'select * from pay_fee where sid = "'.$user_check.'";';
 

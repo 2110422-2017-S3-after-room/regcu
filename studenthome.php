@@ -25,8 +25,7 @@
 
       <!-- ดูเกรดรายวิชา -->
       <button class="button white" name = "transcript" onclick="location.href='showTranscript.php'"> Transcript  <div class="button__horizontal"></div><div class="button__vertical"></div></button>
-
-      <button class="button white" name = "myprofile" onclick="location.href='student-profile.php'"> My profile  <div class="button__horizontal"></div><div class="button__vertical"></div></button>
+      
 
       <button class="button pink" name = "showEnrolledCourse" onclick="location.href='showEnrolledCourse.php'"> Show enrolled course <div class="button__horizontal"></div><div class="button__vertical"></div></button>
 

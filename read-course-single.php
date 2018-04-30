@@ -10,7 +10,22 @@ require "session.php";
 require "common.php";
 require "checkstaff.php";
 
-
+if(isset($_POST['addsec'])){
+ 
+  if(isset($_POST['newsec_id']) and isset($_POST['newyear']) and isset($_POST['newsem']) and isset($_POST['newtid'])){
+    $newsec_id = $_POST['newsec_id'];
+    $newyear = $_POST['newyear'];
+    $newsem = $_POST['newsem'];
+    $newtid = $_POST['newtid'];
+    $cid = $_GET['cid'];
+    $sql = "INSERT INTO section (cid,sec_id,yearr,sem,tid)
+    VALUES ('".$cid."', ".$newsec_id.", ".$newyear.", ".$newsem.", '".$newtid."');";
+    $res = mysqli_query($db, $sql);
+    if(!$res){
+      echo "Cannot insert section. It might already exist! Try Editing instead. ";
+    }
+  }
+}
 
 if (isset($_POST['submit'])) { 
   try {
@@ -39,9 +54,13 @@ if (isset($_POST['submit'])) {
 
         //the actual update query           
         $sql = "UPDATE section
-                SET yearr=".$year.", sem=".$sem.", tid= ".$tid."
-                WHERE sec_id = '".$sec_id."' AND cid = ".$cid." ";
-        $result = mysqli_query($db,$sql);           
+                SET yearr=".$year.", sem=".$sem.", tid= '".$tid."'
+                WHERE sec_id = '".$sec_id."' AND cid = '".$cid."' ";
+        $result = mysqli_query($db,$sql); 
+        
+        if(!$result){
+          echo "cannot update";
+        }          
     }
     if(sizeof($invalidtid) != 0){
         echo '<script language="javascript">';
@@ -105,7 +124,7 @@ if (isset($_GET['cid'])) {
   Course Name : <?= $row2['cname'] ?> &#9; 
   Credits: <?=$row2['credits']?> </pre></p>
 <form method="post" action="">
-<table class="data-table" style="display: block; overflow-y: auto; width:700px; max-height: 500px;">
+<table class="data-table" style="display: block; overflow-y: auto; width:1000px; max-height: 500px;">
   <caption style="background: none"> sections of course <?= $cid ?> :  </caption>
   <thead> 
     <th> section id</th>
@@ -113,10 +132,18 @@ if (isset($_GET['cid'])) {
     <th> semester</th>
     <th> teacher id</th>
     <th> teacher name</th>
-    <th> delete section </th>
+    <th> </th>
   </thead>
   <tbody>
-      <td>
+    <tr>
+      <td> <input type="text" name="newsec_id">  </td>
+      <td> <input type="text" name="newyear">  </td>
+      <td> <input type="text" name="newsem">  </td>
+      <td> <input type="text" name="newtid">  </td>
+      <td>   </td>
+      <td> <input class="addbutton" type="submit" name="addsec" value = "+"> </td>
+    </tr>
+
     <?php foreach ($result as $row) : 
       $sec = $row['sec_id'];
       $year = $row['yearr'];
@@ -156,9 +183,6 @@ if (isset($_GET['cid'])) {
      <input style="display: inline-block;" type="submit" name="submit" class="submitbutton" value="Submit">
 </form>
 
-
-
-<a href="managecourse.php">Back to manage courses</a>
 </div>
 
     <?php require "templates/footer.php"; 

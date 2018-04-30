@@ -3,7 +3,6 @@ if (isset($_POST['submit'])) {
 	require "common.php";
   	include "session.php";
   	include "checkstaff.php";
-  	$sch_name = $_POST['sch_name'];
 }
 ?>
 
@@ -16,13 +15,17 @@ if (isset($_POST['submit'])) {
   <h2>Add a scholarship</h2>
 
   <form action="create-scholarship-single.php" method="post" class="form">
-  	<?php
-		if (isset($_POST['submit'])) { ?>
-			<label><?php echo $sch_name; 
-			echo "successfully added.";?></label>	
-	<?php	}
-	?>
     <label class="formtitle">Add a scholarship</label><br><br>
+    <label for="sch_name">Scholarship's name</label>
+    <input type="text" name="sch_name" id="sch_name" class="formtextbox">
+    <label for="sch_year">Year</label>
+    <input type="number" name="sch_year" id="sch_year" class="formnumberbox"><br><br>
+     <label for="sch_amount">Full Name</label>
+    <input type="text" name="sch_full_name" id="sch_full_name" class="formtextbox"><br><br>
+    <label for="sch_owner">Owner</label>
+    <input type="text" name="sch_owner" id="sch_owner" class="formtextbox"><br><br>
+    <label for="sch_amount">Amount</label>
+    <input type="text" name="sch_amount" id="sch_amount" class="formtextbox"><br><br>
     <label for="sch_type">Type</label>
     <select name="sch_type">
       <option value="1"> 1 : ทุนอุดหนุนการศึกษา </option>

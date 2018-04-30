@@ -17,9 +17,9 @@
                
                <form  name = "myForm" action = "?" method = "post" >
                   <label>course ID :</label>
-                  <input type = "number" name = "courseID" class = "formtextbox" /><br><br>
+                  <input type = "text" name = "courseID" class = "formtextbox" /><br><br>
                   <label> section  :</label>
-                  <input type = "number" name = "sectionID" class = "formtextbox" /><br/><br />
+                  <input type = "number" name = "sectionID" min = 1 class = "formnumberbox" /><br/><br />
                   <input type = "submit"  value = " Submit " class="submitbutton"/><br />
                </form>
               
