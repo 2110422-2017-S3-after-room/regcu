@@ -20,9 +20,13 @@ try  {
     $statement->execute();
     $result = $statement->fetchAll();
 
+<<<<<<< HEAD
     $sql2 = "SELECT D.*, M.relationship 
     from family_member_detail D,family_member M 
     where M.sid = $user_check and M.fnat_id = D.fnat_id;";
+=======
+    $sql2 = "SELECT D.*,M.relationship from family_member_detail D,family_member M where M.sid = $user_check and M.fnat_id = D.fnat_id;";
+>>>>>>> origin/master
     $statement2 = $connection->prepare($sql2);
     $statement2->execute();
     $result2 = $statement2->fetchAll();
@@ -39,8 +43,13 @@ include "splitleft.html"; ?>
 <div >
   <?php include 'backbuttonstudent.html'; ?>
   <h1> My profile </h1>
+<<<<<<< HEAD
   <table class="data-table" style="display: block;  min-width: 250px; width: 270px;">
      <!--  <thead>
+=======
+  <table class="data-table" style="display: block; overflow: auto;">
+      <thead>
+>>>>>>> origin/master
         <tr>
           <th>Student's ID</th>
           <th>Name</th>
@@ -50,6 +59,7 @@ include "splitleft.html"; ?>
           <th>Advisor's ID</th>
           <th>Edit </th>
         </tr>
+<<<<<<< HEAD
       </thead> -->
       <tbody>
       <?php foreach ($result as $row) : ?>
@@ -68,10 +78,25 @@ include "splitleft.html"; ?>
      
        <!--  <tr><th style="background-color: #5b66b8; color:white">Edit </th><td><a href="update-student-profile.php?sid=<?php echo escape($user_check); ?>"><i class="fas fa-pencil-alt"></i></a></td></tr>
          -->
+=======
+      </thead>
+      <tbody>
+      <?php foreach ($result as $row) : ?>
+        <tr>
+          <td><?php echo escape($row["sid"]); ?></td>
+          <td><?php echo escape($row["fname"]); ?> <?php echo escape($row["lname"]); ?></td>
+          <td><?php echo escape($row["stype"]); ?></td>
+          <td><?php echo escape($row["conduct_score"]); ?></td>
+          <td><?php echo escape($row["enroll_year"]); ?></td>
+          <td><?php echo escape($row["advisor_id"]); ?></td>
+          <td><a href="update-student-profile.php?sid=<?php echo escape($user_check); ?>"><i class="fas fa-pencil-alt"></i></a></td>
+        </tr>
+>>>>>>> origin/master
       <?php endforeach; ?>
       </tbody>
     </table>
   <br><br>
+<<<<<<< HEAD
   <h1> My relatives </h1>
             
       
@@ -91,6 +116,35 @@ include "splitleft.html"; ?>
       </table>
         <?php endforeach; ?>
         
+=======
+  <h1> My relative </h1>
+    <table class="data-table" style="display: block; overflow: auto;">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Birthdate</th>
+            <th>National ID</th>
+            <th>Occupation</th>
+            <th>Yearly income</th>
+            <th>Relationship</th>
+            <th>edit</th>
+          </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($result2 as $row) : ?>
+          <tr>
+            <td><?php echo escape($row["name"]); ?></td>
+            <td><?php echo escape($row["birthdate"]); ?></td>
+            <td><?php echo escape($row["fnat_id"]); ?></td>
+            <td><?php echo escape($row["occupation"]); ?></td>
+            <td><?php echo escape($row["yearly_income"]); ?></td>
+            <td><?php echo escape($row["relationship"]); ?></td>
+            <td><a href="update-student-profile.php?sid=<?php echo escape($user_check); ?>"><i class="fas fa-pencil-alt"></i></a></td>
+          </tr>
+        <?php endforeach; ?>
+        </tbody>
+      </table>
+>>>>>>> origin/master
   </div>
 
 </div>
@@ -110,4 +164,8 @@ include "splitleft.html"; ?>
   });
   
 </script>
+<<<<<<< HEAD
 <?php require "templates/footer.php"; ?>
+=======
+<?php require "templates/footer.php"; ?>
+>>>>>>> origin/master

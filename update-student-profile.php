@@ -76,7 +76,11 @@ if (isset($_GET['sid'])) {
   <label class="formtitle"> Edit my profile </label><br><br>
     <?php foreach ($student as $key => $value) : ?>
       <label for="<?php echo $key; ?>"><?php echo ucfirst($key); ?></label>
+<<<<<<< HEAD
       <input type="text" name="<?php echo $key; ?>" sid="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'sid' ? 'readonly' : null); ?> <?php echo ($key === 'nat_id' ? 'readonly' : null); ?> <?php echo ($key === 'fname' ? 'readonly' : null); ?> <?php echo ($key === 'lname' ? ' readonly' : null); ?> <?php echo ($key === 'conduct_score' ? 'readonly' : null); ?> <?php echo ($key === 'dep_id' ? 'readonly' : null); ?> <?php echo ($key === 'advisor_id' ? 'readonly' : null); ?> <?php echo ($key === 'group_id' ? 'readonly' : null); ?> <?php echo ($key === 'enroll_year' ? 'readonly' : null); ?><?php echo ($key === 'stype' ? 'readonly' : null); ?>><br>
+=======
+      <input type="text" name="<?php echo $key; ?>" sid="<?php echo $key; ?>" value="<?php echo escape($value); ?>" <?php echo ($key === 'sid' ? 'readonly' : null); ?> <?php echo ($key === 'nat_id' ? 'readonly' : null); ?> <?php echo ($key === 'fname' ? 'readonly' : null); ?> <?php echo ($key === 'lname' ? 'readonly' : null); ?> <?php echo ($key === 'conduct_score' ? 'readonly' : null); ?> <?php echo ($key === 'dep_id' ? 'readonly' : null); ?> <?php echo ($key === 'advisor_id' ? 'readonly' : null); ?> <?php echo ($key === 'group_id' ? 'readonly' : null); ?> <?php echo ($key === 'enroll_year' ? 'readonly' : null); ?><?php echo ($key === 'stype' ? 'readonly' : null); ?>><br>
+>>>>>>> origin/master
     <?php endforeach; ?> 
     <input  class="submitbutton" type="submit" name="submit" value="Submit">
 </form>
