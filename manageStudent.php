@@ -17,8 +17,8 @@ if (isset($_POST['submit'])) {
     $cscore = $_POST['cscore'];
     $sql = "SELECT S.sid, S.fname, S.lname, S.stype, S.advisor_id, S.conduct_score, T.tname, S.enroll_year FROM Student S,Teacher T
             WHERE sid like '%".$sid."%' 
-            and fname like '%".$fname."%'
-            and lname like '%".$lname."%'
+            and fname like '".$fname."%'
+            and lname like '".$lname."%'
             and stype  =" .$stype."
             and advisor_id like '".$advid."%'
             and tname like '%".$advname."%'

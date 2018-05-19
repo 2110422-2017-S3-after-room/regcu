@@ -62,8 +62,8 @@ if (isset($_POST['submit'])) {
     if($_POST['sch_type'] > 0){
        $check_type = "and sch_type = ".$_POST['sch_type'];
     }
-    $sql = "SELECT * FROM scholarship WHERE 
-  (sch_name like '%".$_POST['sch_name']."%' or sch_full_name like '%".$_POST['sch_name']."%')
+    $sql = "SELECT * FROM scholarship natural join sch_full_name WHERE 
+  (sch_name like '%".$_POST['sch_name']."%' or full_name like '%".$_POST['sch_name']."%')
   and sch_owner like '%".$_POST['sch_owner']."%' ".$check_type." ".$check_year.";" ;
     // echo $sql;
     $result = mysqli_query($db,$sql);
@@ -107,7 +107,7 @@ if (isset($_POST['submit'])) {
           <td><?php echo escape($row["sch_owner"]); ?></td>
           <td><?php echo escape($row["sch_amount"]); ?></td>
           <td><?php echo escape($row["sch_type"]); ?></td>
-          <td><?php echo escape($row["sch_full_name"]); ?></td>
+          <td><?php echo escape($row["full_name"]); ?></td>
         </tr>
       <?php endforeach; ?>
       </tbody>

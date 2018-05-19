@@ -1,28 +1,25 @@
 <?php 
-   if(isset($_POST['sch_name']) and isset($_POST['sch_year']) ){
-      $sch_name =  $_POST['sch_name'];
+   if(isset($_POST['sch_name']) and isset($_POST['sch_year'])){
+      $sch_name = $_POST['sch_name'];
       $sch_year = $_POST['sch_year'];
       
-   } else{
+   }else{ 
       echo '<script language="javascript">';
       echo 'alert("please complete the form")';
       echo '</script>';
-      header("Location: create-scholarship.php");
-   }
+      header('Location: create-scholarship.php');
+    }
 
 ?>
-<?php 
-if (isset($_POST['submit'])) {
+<?php if (isset($_POST['submit'])) {
     require "common.php";
     include "session.php";
     include "checkstaff.php";
-    $max_loan_amount = $_POST['max_loan_amount'];
-      $typee = $_POST['type'];
-      $detail = $_POST['detail'];
-
-      $sql2 = "INSERT INTO กยศ (sch_name, sch_year, max_loan_amount, type, detail) 
-      VALUES ('$sch_name', '$sch_year', '$max_loan_amount', '$typee  ', '$detail');";
+      $sch_cond = $_POST['sch_cond'];
+      $sql2 = "INSERT INTO external_sch (sch_name, sch_year, sch_cond) 
+      VALUES ('$sch_name', '$sch_year', '$sch_cond');";
       $result2 = mysqli_query($db,$sql2);
+
       if(!$result2){
         echo $sql2;
         echo $sch_name;
@@ -31,11 +28,10 @@ if (isset($_POST['submit'])) {
         echo "Please go back to complete the form correctly.";
         exit();
       }else{
-        echo "<script type='text/javascript'>alert('$sch_name' +' successfully added.');</script>";
+        echo "<script type='text/javascript'>alert('eee');</script>";
       }
       header('Location: create-scholarship.php');
     }
-
 ?> 
 <?php
   require "templates/header.php"; 
@@ -48,12 +44,9 @@ if (isset($_POST['submit'])) {
     <input type='hidden' name='sch_name' value='<?php echo "$sch_name";?>'/> 
     <input type='hidden' name='sch_year' value='<?php echo "$sch_year";?>'/> 
     <label class="formtitle">specific info</label><br><br>
-    <label for="max_loan_amount">Maximum loan amount</label>
-    <input type="number" name="max_loan_amount" id="max_loan_amount" class="formnumberbox"><br><br>
-    <label for="type">Type (1 = กยศ 2 = กรอ) </label>
-    <input type="number" step="1" name="type" id="type" class="number"><br><br>
-    <label for="detail">detail</label>
-    <input type="text" name="detail" id="detail" class="formtextbox"><br><br>
+    <label for="sch_cond">scholarship condition</label><br>
+    <textarea maxlength="500" class="formtextbox" name="sch_cond" style="width:500px;height: 100px;resize: none"></textarea>
+<br>
     <input type="submit" name="submit" value="Submit" class="submitbutton"><br><br>
   </form>
 </div>

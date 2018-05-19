@@ -1,36 +1,48 @@
-<?php 
-   if(isset($_POST['sch_name'])) $sch_name = $_POST['sch_name'];
-   else echo'sadfasdfsadf';
-   if(isset($_POST['sch_year'])) $sch_year = $_POST['sch_year'];
-   else echo'sadfasdfsadf';
-   if(isset($_POST['min_cscore'])) $min_cscore = $_POST['min_cscore'];
-   if(isset($_POST['min_gpa'])) $min_gpa = $_POST['min_gpa'];
-   if(isset($_POST['max_famincome'])) $max_famincome = $_POST['max_famincome'];
-?>
-<?php if (isset($_POST['submit'])) {
-    require "common.php";
-    include "session.php";
-    include "checkstaff.php";
-      $sql2 = "INSERT INTO excellent_academic_sch (sch_name, sch_year, min_conduct_score, min_GPA, max_family_income) 
-      VALUES ('$sch_name', '$sch_year', '$min_cscore', '$min_gpa', '$max_famincome');";
-      $result2 = mysqli_query($db,$sql2);
-      if(!$result2){
-        echo $sql2;
-        echo $sch_name;
-        echo $sch_year;
-
-        echo "Please go back to complete the form correctly.";
-        exit();
-      }else{
-        echo "<script type='text/javascript'>alert('eee');</script>";
-      }
-      header('Location: create-scholarship.php');
-    }
-?> 
 <?php
+  require "common.php";
+  include "session.php";
+  include "checkstaff.php";
   require "templates/header.php"; 
   include "splitleft-staff.html";
 ?>
+
+<?php 
+   if(isset($_POST['sch_name']) and isset($_POST['sch_year'])){
+      $sch_name = $_POST['sch_name']; 
+      $sch_year = $_POST['sch_year'];
+      
+   }else{
+      echo '<script language="javascript">';
+      echo 'alert("please complete this form first.")';
+      echo '</script>';
+      header('Location: create-scholarship.php');
+
+   }    
+?>
+<?php if (isset($_POST['submit'])) {
+    
+    $min_gpa = $_POST['min_gpa'];
+    $min_cscore = $_POST['min_cscore'];
+    $max_famincome = $_POST['max_famincome'];
+    $sql2 = "INSERT INTO excellent_academic_sch (sch_name, sch_year, min_conduct_score, min_GPA, max_family_income) 
+      VALUES ('$sch_name', '$sch_year', '$min_cscore', '$min_gpa', '$max_famincome');";
+    $result2 = mysqli_query($db,$sql2);
+      if(!$result2){
+        echo '<script language="javascript">';
+        echo 'alert("please complete the form first")';
+        echo '</script>';
+        exit();
+      }else{
+        echo '<script language="javascript">';
+        echo 'alert("scholarship added")';
+        echo '</script>';
+        header('Location: create-scholarship.php');
+      }
+      
+        
+    }
+?> 
+
  <div class="splitright">
   <div style="padding-left: 20px;">
   <h2>Add a scholarship</h2>

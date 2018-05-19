@@ -41,3 +41,4 @@ if (isset($_POST['submit'])) {
 </div></div>
 
 <?php require "templates/footer.php"; ?>
+ 

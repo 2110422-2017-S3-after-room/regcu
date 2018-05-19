@@ -1,24 +1,40 @@
+<?php
+  require "common.php";
+  include "session.php";
+  include "checkstaff.php";
+  require "templates/header.php"; 
+  include "splitleft-staff.html";
+?>
 <?php 
-   if(isset($_POST['sch_name'])) $sch_name = $_POST['sch_name'];
-   else echo'sadfasdfsadf';
-   if(isset($_POST['sch_year'])) $sch_year = $_POST['sch_year'];
-   else echo'sadfasdfsadf';
-   if(isset($_POST['min_cscore'])) $min_cscore = $_POST['min_cscore'];
-   if(isset($_POST['min_gpa'])) $min_gpa = $_POST['min_gpa'];
-   if(isset($_POST['num_awards'])) $num_awards = $_POST['num_awards'];
+    if(isset($_POST['sch_name']) and isset($_POST['sch_year'])){
+      $sch_name = $_POST['sch_name'];
+      $sch_year = $_POST['sch_year'];
+     
+    }else{ 
+      echo '<script language="javascript">';
+      echo 'alert("message successfully sent")';
+      echo '</script>';
+      header('Location: create-scholarship.php');
+
+      echo '<script language="javascript">';
+        echo 'alert("scholarship added")';
+        echo '</script>';
+        header('Location: create-scholarship.php');
+    }
+
 ?>
 <?php if (isset($_POST['submit'])) {
-    require "common.php";
-    include "session.php";
-    include "checkstaff.php";
+
+     $min_cscore = $_POST['min_cscore'];
+      $min_gpa = $_POST['min_gpa'];
+      $num_awards = $_POST['num_awards'];
       $sql2 = "INSERT INTO ทุนสร้างชื่อเสียงและทำคุณประโยชน์ (sch_name, sch_year, min_conduct_score, min_GPA, num_awards) 
       VALUES ('$sch_name', '$sch_year', '$min_cscore', '$min_gpa', '$num_awards');";
       $result2 = mysqli_query($db,$sql2);
       if(!$result2){
-        echo $sql2;
-        echo $sch_name;
-        echo $sch_year;
-
+         echo '<script language="javascript">';
+        echo 'alert("please complete the form first")';
+        echo '</script>';
         echo "Please go back to complete the form correctly.";
         exit();
       }else{

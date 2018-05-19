@@ -28,9 +28,7 @@
           <td>' .$row['sec_id'].  '</td>
           <td style="text-align:left;">' .$row['cname'].   '</td>
           <td>' .$row['credits']. '</td>
-          <td>' .$row['tname'].   '</td>
-  
-           
+          <td>' .$row['tname'].   '</td> 
         </tr>';
       $no++;
     }?>

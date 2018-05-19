@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
       $tt = " and sch_type = ".$_POST['sch_type'];
     }
     $sch_name = $_POST['sch_name'];
-    $sql = "SELECT * FROM scholarship
+    $sql = "SELECT * FROM scholarship natural join sch_full_name
             WHERE (sch_name like '%$sch_name%' 
             or sch_year like '%$sch_name%' 
             or sch_owner like '%$sch_name%')
@@ -88,7 +88,7 @@ if (isset($_POST['submit'])) {
           <td><?php echo escape($row["sch_amount"]); ?></td>
 
           <td style="font-family:Pridi;"> <?= escape($row["sch_type"]) ?> </td>
-          <td style="font-family:Pridi;">  <?= escape($row["sch_full_name"]) ?> </td>
+          <td style="font-family:Pridi;">  <?= escape($row["full_name"]) ?> </td>
           
           <td ><a href="update-scholarship-single.php?sch_name=<?php echo escape($row["sch_name"]); ?>&sch_year=<?= $row['sch_year']?>"><i class="fas fa-pencil-alt"></i></a></td>
           
